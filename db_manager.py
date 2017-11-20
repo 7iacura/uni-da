@@ -84,6 +84,7 @@ def import_dataset():
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_users))
 	print('INSERT INTO users')
+	parameters = []
 	for user in list_users:
 
 		# create object user_data to store [userid, count, avg, rating_list, var]
@@ -95,10 +96,9 @@ def import_dataset():
 		user_data.append(user[3].split(','))
 		# calculate variance
 		user_data.append(calculate_variance(user_data))
-
-		crs.execute("INSERT INTO users VALUES (?,?,?,?)", (user_data[0], user_data[1], user_data[2], user_data[4]))
-
+		parameters.append((user_data[0], user_data[1], user_data[2], user_data[4]))
 		prgbar.step()
+	crs.executemany("INSERT INTO users VALUES (?,?,?,?)", parameters)
 	db.commit()
 
 	# PRODUCTS
@@ -106,7 +106,7 @@ def import_dataset():
 	list_products = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_products))
-
+	parameters = []
 	print('\nINSERT INTO products')
 	for product in list_products:
 		# create object product_data to store
@@ -118,9 +118,8 @@ def import_dataset():
 		product_data.append(product[3].split(','))
 		# calculate variance
 		product_data.append(calculate_variance(product_data))
-
-		crs.execute("INSERT INTO products VALUES (?,?,?,?)", (product_data[0], product_data[1], product_data[2], product_data[4]))
-		db.commit()
+		parameters.append((product_data[0], product_data[1], product_data[2], product_data[4]))
 		prgbar.step()
-
+	crs.executemany("INSERT INTO products VALUES (?,?,?,?)", parameters)
+	db.commit()
 	db.close()
