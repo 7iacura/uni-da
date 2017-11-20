@@ -1,5 +1,5 @@
 import sqlite3, csv, sys
-
+from pprint import pprint
 
 class ProgressBar():
 
@@ -47,9 +47,9 @@ def initialize_dataset():
 
 def calculate_variance(user_data):
 	numerator = 0
-	for rate in user_data[3]:
-		numerator += (rate[0] - user_data[2]) * (rate[0] - user_data[2])
-	return numerator / float(user_data[1])
+	for rate in map(float, user_data[3]):
+		numerator += (rate - user_data[1]) * (rate - user_data[1])
+	return numerator / float(user_data[2])
 
 
 def import_dataset():
@@ -78,54 +78,48 @@ def import_dataset():
 	print()
 
 	# USERS
-	list_users = []
-	for user in crs.execute("SELECT DISTINCT(userid) FROM ratings"):
-		list_users.append(user[0])
+
+	crs.execute("SELECT DISTINCT(userid),AVG(score),count(score),GROUP_CONCAT(score) FROM ratings GROUP BY userid")
+	list_users = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_users))
-
 	print('INSERT INTO users')
 	for user in list_users:
+
 		# create object user_data to store [userid, count, avg, rating_list, var]
-		user_data = [user]
-		# get count and average of user ratings
-		crs.execute("SELECT COUNT(score), AVG(score) FROM ratings WHERE userid=?", (user,))
-		user_count_avg = crs.fetchone()
-		user_data.append(user_count_avg[0])
-		user_data.append(user_count_avg[1])
+		user_data = []
+		user_data.append(user[0])
+		user_data.append(user[1])
+		user_data.append(user[2])
 		# get all score ratings of user
-		crs.execute("SELECT score FROM ratings WHERE userid=?", (user,))
-		user_data.append(crs.fetchall())
+		user_data.append(user[3].split(','))
 		# calculate variance
 		user_data.append(calculate_variance(user_data))
 
-		crs.execute("INSERT INTO users VALUES (?,?,?,?)", (user, user_data[1], user_data[2], user_data[4]))
-		db.commit()
+		crs.execute("INSERT INTO users VALUES (?,?,?,?)", (user_data[0], user_data[1], user_data[2], user_data[4]))
+
 		prgbar.step()
+	db.commit()
 
 	# PRODUCTS
-	list_products = []
-	for product in crs.execute("SELECT DISTINCT(productid) FROM ratings"):
-		list_products.append(product[0])
+	crs.execute("SELECT DISTINCT(productid),AVG(score),count(score),GROUP_CONCAT(score) FROM ratings GROUP BY productid")
+	list_products = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_products))
 
-	print('INSERT INTO users')
+	print('\nINSERT INTO products')
 	for product in list_products:
-		# create object product_data to store [productid, count, avg, rating_list, var]
-		product_data = [product]
-		# get count and average of product ratings
-		crs.execute("SELECT COUNT(score), AVG(score) FROM ratings WHERE userid=?", (product,))
-		product_count_avg = crs.fetchone()
-		product_data.append(product_count_avg[0])
-		product_data.append(product_count_avg[1])
-		# get all score ratings of product
-		crs.execute("SELECT score FROM ratings WHERE productid=?", (product,))
-		product_data.append(crs.fetchall())
+		# create object product_data to store
+		product_data = []
+		product_data.append(product[0])
+		product_data.append(product[1])
+		product_data.append(product[2])
+		# get all score ratings of user
+		product_data.append(product[3].split(','))
 		# calculate variance
 		product_data.append(calculate_variance(product_data))
 
-		crs.execute("INSERT INTO products VALUES (?,?,?,?)", (product, product_data[1], product_data[2], product_data[4]))
+		crs.execute("INSERT INTO products VALUES (?,?,?,?)", (product_data[0], product_data[1], product_data[2], product_data[4]))
 		db.commit()
 		prgbar.step()
 
