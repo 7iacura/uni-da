@@ -22,24 +22,24 @@ def initialize_dataset():
 	db = sqlite3.connect('dataset/dataset.db')
 	crs = db.cursor()
 
-	print('DROP TABLEs ratings, users, products')
+	print('DROP TABLEs rating, user, product')
 	# clean db of dataset
-	crs.execute('DROP TABLE IF EXISTS products')
-	crs.execute('DROP TABLE IF EXISTS users')
-	crs.execute('DROP TABLE IF EXISTS ratings')
+	crs.execute('DROP TABLE IF EXISTS product')
+	crs.execute('DROP TABLE IF EXISTS user')
+	crs.execute('DROP TABLE IF EXISTS rating')
 	db.commit()
 
-	print('CREATE TABLEs rating, users, products')
+	print('CREATE TABLEs rating, user, product')
 # create ratings table
-	crs.execute('''CREATE TABLE IF NOT EXISTS ratings
+	crs.execute('''CREATE TABLE IF NOT EXISTS rating
 										(id integer PRIMARY KEY,
 										productid text, userid text, score real, text text)''')
 	# create users table
-	crs.execute('''CREATE TABLE IF NOT EXISTS users
-										(userid text PRIMARY KEY, num_rating int, av_score real, var_score real)''')
+	crs.execute('''CREATE TABLE IF NOT EXISTS user
+										(id text PRIMARY KEY, num_rating int, av_score real, var_score real)''')
 	# create products table
-	crs.execute('''CREATE TABLE IF NOT EXISTS products
-										(productid text PRIMARY KEY, num_rating int, av_score real, var_score real)''')
+	crs.execute('''CREATE TABLE IF NOT EXISTS product
+										(id text PRIMARY KEY, num_rating int, av_score real, var_score real)''')
 	db.commit()
 
 	db.close()
@@ -60,7 +60,7 @@ def import_dataset():
 	filename = 'dataset/food.tsv'
 
 	# RATINGS
-	print('INSERT INTO ratings')
+	print('INSERT INTO rating')
 	# setup progress bar
 	len_dataset = sum(1 for row in open(filename, 'r', encoding='utf-8', errors='ignore'))
 	prgbar = ProgressBar(40, len_dataset)
@@ -72,18 +72,18 @@ def import_dataset():
 		# for each row, insert values in db
 		for index, row in enumerate(dataset):
 			x = row[0].split('\t')
-			crs.execute("INSERT INTO ratings VALUES (?,?,?,?,?)", (index, str(x[0]), str(x[1]), x[2], str(x[3])))
+			crs.execute("INSERT INTO rating VALUES (?,?,?,?,?)", (index, str(x[0]), str(x[1]), x[2], str(x[3])))
 			prgbar.step()
 	db.commit()
 	print()
 
 	# USERS
 
-	crs.execute("SELECT DISTINCT(userid),AVG(score),count(score),GROUP_CONCAT(score) FROM ratings GROUP BY userid")
+	crs.execute("SELECT DISTINCT(userid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY userid")
 	list_users = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_users))
-	print('INSERT INTO users')
+	print('INSERT INTO user')
 	parameters = []
 	for user in list_users:
 
@@ -98,16 +98,16 @@ def import_dataset():
 		user_data.append(calculate_variance(user_data))
 		parameters.append((user_data[0], user_data[1], user_data[2], user_data[4]))
 		prgbar.step()
-	crs.executemany("INSERT INTO users VALUES (?,?,?,?)", parameters)
+	crs.executemany("INSERT INTO user VALUES (?,?,?,?)", parameters)
 	db.commit()
 
 	# PRODUCTS
-	crs.execute("SELECT DISTINCT(productid),AVG(score),count(score),GROUP_CONCAT(score) FROM ratings GROUP BY productid")
+	crs.execute("SELECT DISTINCT(productid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY productid")
 	list_products = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_products))
 	parameters = []
-	print('\nINSERT INTO products')
+	print('\nINSERT INTO product')
 	for product in list_products:
 		# create object product_data to store
 		product_data = []
@@ -120,6 +120,6 @@ def import_dataset():
 		product_data.append(calculate_variance(product_data))
 		parameters.append((product_data[0], product_data[1], product_data[2], product_data[4]))
 		prgbar.step()
-	crs.executemany("INSERT INTO products VALUES (?,?,?,?)", parameters)
+	crs.executemany("INSERT INTO product VALUES (?,?,?,?)", parameters)
 	db.commit()
 	db.close()
