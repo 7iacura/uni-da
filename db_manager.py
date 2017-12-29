@@ -17,6 +17,15 @@ class ProgressBar():
 		sys.stdout.flush()
 
 
+def execute_select(select):
+	db = sqlite3.connect('dataset/dataset.db')
+	crs = db.cursor()
+	crs.execute(select)
+	result = crs.fetchall()
+	db.close()
+	return result
+
+
 def initialize_dataset():
 	# connect to database (or create it)
 	db = sqlite3.connect('dataset/dataset.db')
@@ -52,12 +61,11 @@ def calculate_variance(user_data):
 	return numerator / float(user_data[2])
 
 
-def import_dataset():
+def import_dataset(filename):
 	# connect to database
 	db = sqlite3.connect('dataset/dataset.db')
 	crs = db.cursor()
 
-	filename = 'dataset/food.tsv'
 
 	# RATINGS
 	print('INSERT INTO rating')
@@ -79,7 +87,11 @@ def import_dataset():
 
 	# USERS
 
+<<<<<<< HEAD
 	crs.execute("SELECT DISTINCT(userid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY userid")
+=======
+	crs.execute("SELECT DISTINCT(userid),count(score),AVG(score),GROUP_CONCAT(score) FROM ratings GROUP BY userid")
+>>>>>>> master
 	list_users = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_users))
@@ -102,7 +114,11 @@ def import_dataset():
 	db.commit()
 
 	# PRODUCTS
+<<<<<<< HEAD
 	crs.execute("SELECT DISTINCT(productid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY productid")
+=======
+	crs.execute("SELECT DISTINCT(productid),count(score),AVG(score),GROUP_CONCAT(score) FROM ratings GROUP BY productid")
+>>>>>>> master
 	list_products = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_products))
