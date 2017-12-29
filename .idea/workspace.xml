@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1386ba27-5475-418b-b280-f5ad28da3727" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/analytics.iml" afterPath="$PROJECT_DIR$/.idea/analytics.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/users.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/dataset/dataset.db" afterPath="$PROJECT_DIR$/dataset/dataset.db" />
+      <change beforePath="$PROJECT_DIR$/db_manager.py" afterPath="$PROJECT_DIR$/db_manager.py" />
+      <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/index.html" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html" />
+      <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" />
+      <change beforePath="$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py" afterPath="$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py" />
     </list>
     <ignored path=".idea/" />
     <ignored path="dataset/" />
@@ -21,62 +26,33 @@
       <file leaf-file-name="db_manager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1665">
-              <caret line="128" column="21" lean-forward="false" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+            <state relative-caret-position="105">
+              <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
               <folding>
-                <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unifoodweb/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="117" column="27" lean-forward="false" selection-start-line="117" selection-start-column="27" selection-end-line="117" selection-end-column="27" />
               <folding>
-                <element signature="e#22#31#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#205#228#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/views.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/apps.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="21" />
+            <state relative-caret-position="60">
+              <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -85,31 +61,51 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            <state relative-caret-position="267">
+              <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/admin.py">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            <state relative-caret-position="326">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/urls.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="252">
+              <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
               <folding>
-                <element signature="e#635#672#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/users.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,6 +124,7 @@
     <findStrings>
       <find>BASE_DIR</find>
       <find>userid</find>
+      <find>.tsv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,20 +145,24 @@
       <list>
         <option value="$PROJECT_DIR$/sqllite-manager.py" />
         <option value="$PROJECT_DIR$/manager-db.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/unifoodweb/unifoodapp/urls.py" />
         <option value="$PROJECT_DIR$/unifoodweb/unifoodapp/views.py" />
         <option value="$PROJECT_DIR$/unifoodweb/unifoodapp/apps.py" />
         <option value="$PROJECT_DIR$/unifoodweb/manage.py" />
         <option value="$PROJECT_DIR$/unifoodweb/models.py" />
-        <option value="$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/style.css" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/index.html" />
         <option value="$PROJECT_DIR$/unifoodweb/unifoodweb/urls.py" />
-        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/admin.py" />
-        <option value="$PROJECT_DIR$/db_manager.py" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/models.py" />
+        <option value="$PROJECT_DIR$/db_manager.py" />
+        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/users.html" />
+        <option value="$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html" />
+        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" />
+        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/users.html" />
+        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html" />
       </list>
     </option>
   </component>
@@ -197,6 +198,33 @@
               <item name="uni-food" type="462c0819:PsiDirectoryNode" />
               <item name="unifoodweb" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="uni-food" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uni-food" type="462c0819:PsiDirectoryNode" />
+              <item name="unifoodweb" type="462c0819:PsiDirectoryNode" />
+              <item name="reviewapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uni-food" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uni-food" type="462c0819:PsiDirectoryNode" />
+              <item name="unifoodweb" type="462c0819:PsiDirectoryNode" />
+              <item name="reviewapp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uni-food" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uni-food" type="462c0819:PsiDirectoryNode" />
+              <item name="unifoodweb" type="462c0819:PsiDirectoryNode" />
+              <item name="reviewapp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="reviewapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uni-food" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uni-food" type="462c0819:PsiDirectoryNode" />
+              <item name="unifoodweb" type="462c0819:PsiDirectoryNode" />
+              <item name="unifoodweb" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -211,12 +239,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp" />
+      <recent name="$PROJECT_DIR$/unifoodweb/reviewapp/templates" />
+      <recent name="$PROJECT_DIR$/unifoodweb/unifoodapp" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp" />
       <recent name="$PROJECT_DIR$/unifoodweb/reviewapp" />
       <recent name="$PROJECT_DIR$/unifoodweb/reviewapp/static" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/unifoodweb/unifoodapp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -307,10 +338,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17829457" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -338,39 +368,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added django default configuration:&#10;with django installed, run 'python3 manage.py runserver' in correct path, and in http://127.0.0.1:8000/ address is possible to view default django page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added django default configuration:&#10;with django installed, run 'python3 manage.py runserver' in correct path, and in http://127.0.0.1:8000/ address is possible to view default django page" />
+    <MESSAGE value="Merge branch 'master' into setup_django 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' into setup_django 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="112" column="21" lean-forward="true" selection-start-line="112" selection-start-column="21" selection-end-line="112" selection-end-column="21" />
-          <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_manager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -379,7 +392,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -387,7 +403,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="33" lean-forward="false" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -412,7 +430,7 @@
         <state relative-caret-position="330">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="28" selection-end-column="1" />
           <folding>
-            <element signature="e#635#672#0" expanded="true" />
+            <element signature="e#635#672#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -422,7 +440,7 @@
         <state relative-caret-position="1275">
           <caret line="86" column="17" lean-forward="false" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -432,7 +450,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#22#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -441,7 +459,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -450,7 +471,7 @@
         <state relative-caret-position="300">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#635#672#0" expanded="true" />
+            <element signature="e#635#672#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -460,7 +481,7 @@
         <state relative-caret-position="1275">
           <caret line="86" column="17" lean-forward="false" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -470,7 +491,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#22#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -479,7 +500,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -488,7 +512,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding>
-            <element signature="e#635#672#0" expanded="true" />
+            <element signature="e#635#672#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -498,7 +522,7 @@
         <state relative-caret-position="1275">
           <caret line="86" column="17" lean-forward="false" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -508,7 +532,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#22#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -517,7 +541,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -526,7 +553,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding>
-            <element signature="e#635#672#0" expanded="true" />
+            <element signature="e#635#672#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -536,7 +563,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -545,7 +572,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -554,7 +584,7 @@
         <state relative-caret-position="900">
           <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -563,7 +593,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -572,7 +605,7 @@
         <state relative-caret-position="900">
           <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -581,7 +614,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -590,7 +626,7 @@
         <state relative-caret-position="915">
           <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -599,7 +635,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -608,7 +647,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -617,7 +656,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -626,7 +668,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -635,7 +677,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="30" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="28" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -644,7 +689,7 @@
         <state relative-caret-position="945">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -653,7 +698,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -672,42 +720,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/static/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding>
-            <element signature="e#635#672#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -726,19 +742,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/apps.py">
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="21" />
+        <state relative-caret-position="30">
+          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/views.py">
+    <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="75">
+          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding>
+            <element signature="e#635#672#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -747,41 +765,96 @@
         <state relative-caret-position="225">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#22#31#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unifoodweb/unifoodweb/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="128" column="21" lean-forward="false" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+        <state relative-caret-position="105">
+          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding>
-            <marker date="1514559421000" expanded="true" signature="3712:4412" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="362" column="4" lean-forward="false" selection-start-line="362" selection-start-column="4" selection-end-line="363" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="117" column="27" lean-forward="false" selection-start-line="117" selection-start-column="27" selection-end-line="117" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#205#228#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        <state relative-caret-position="267">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/users.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/admin.py">
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        <state relative-caret-position="45">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding />
         </state>
       </provider>
