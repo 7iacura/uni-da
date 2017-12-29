@@ -1,0 +1,11 @@
+
+__pycache__/db_manager.cpython-35.pyc
+
+*.pyc
+
+dataset/*
+
+.idea/*
+.idea/workspace.xml
+
+
