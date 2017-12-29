@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
-from db_manager import initialize_dataset,import_dataset, execute_select
-from sentiment import make_sentiment,parse_format,use_vader
+from db_manager import initialize_dataset, import_dataset, execute_select
+from sentiment import make_sentiment, parse_format, use_vader
 from pprint import pprint
 
 
