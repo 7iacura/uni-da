@@ -21,12 +21,12 @@ urlpatterns = [
     # /users/
     path('users/', views.users, name='users'),
     # /user/0/
-    path('user/<int:user_id>', views.user, name='user'),
+    path('user/<str:user_id>', views.user, name='user'),
 
     # /products/
     path('products/', views.products, name='products'),
     # /product/0/
-    path('product/<int:product_id>', views.product, name='product'),
+    path('product/<str:product_id>', views.product, name='product'),
 
     # /ratings/
     path('ratings/', views.ratings, name='ratings'),

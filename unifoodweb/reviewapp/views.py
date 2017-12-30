@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.core.paginator import Paginator
@@ -27,7 +27,8 @@ def users(request):
 
 
 def user(request, user_id):
-	return HttpResponse("Detail of user %s here" % user_id)
+	user = get_object_or_404(User, pk=user_id)
+	return render(request, 'reviewapp/user.html', {'user': user})
 
 
 def products(request):
@@ -43,7 +44,8 @@ def products(request):
 
 
 def product(request, product_id):
-	return HttpResponse("Detail of product %s here" % product_id)
+	product = get_object_or_404(Product, pk=product_id)
+	return render(request, 'reviewapp/product.html', {'product': product})
 
 
 def ratings(request):
@@ -59,7 +61,8 @@ def ratings(request):
 
 
 def rating(request, rating_id):
-	return HttpResponse("Detail of rating %s here" % rating_id)
+	review = get_object_or_404(Rating, pk=rating_id)
+	return render(request, 'reviewapp/rating.html', {'review': review})
 
 
 # def index(request):

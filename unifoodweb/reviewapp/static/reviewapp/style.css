@@ -358,7 +358,7 @@ footer {
     padding: 0;
 }
 [role="navigation"] li.active {
-    text-shadow: 0px 0px 1px #E91E63;
+    text-shadow: 1px 1px 1px #FF9800;
 }
 [role="navigation"] li {
     font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
@@ -403,5 +403,25 @@ button {
     cursor: pointer;
 }
 
-
+table.tableX {
+    table-layout:fixed;
+    width: 100%;
+}
+table.tableX th {
+    padding: 7px;
+    background: rgba(0, 0, 0, 0.1);
+}
+table.tableY {
+    table-layout:fixed;
+    width: 100%;
+}
+table.tableY td:first-child {
+    width: 25%;
+    padding: 7px;
+    background: rgba(0, 0, 0, 0.1);
+}
+table.tableY td {
+    padding: 7px;
+    text-align: left;
+}
 

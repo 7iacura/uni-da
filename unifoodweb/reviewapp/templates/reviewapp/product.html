@@ -1,0 +1,12 @@
+{% extends "reviewapp/base.html" %}
+
+{% block content %}
+
+    <table class="tableY">
+        <tr><td>ID</td><td>{{ product.id }}</td></tr>
+        <tr><td>Nº reviews</td><td>{{ product.num_rating }}</td></tr>
+        <tr><td>Average score</td><td>{{ product.av_score }}</td></tr>
+        <tr><td>Variance score</td><td>{{ product.var_score }}</td></tr>
+    </table>
+
+{% endblock %}

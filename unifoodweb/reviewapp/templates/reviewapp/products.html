@@ -2,29 +2,30 @@
 
 {% block content %}
 
-{% if objects %}
-<table style="table-layout:fixed; width: 100%">
-    <tr>
+    {% if objects %}
+        <table class="tableX">
+            <tr>
+                <th>ID</th>
+                <th>nº reviews</th>
+                <th>Average score</th>
+                <th>Variance score</th>
+            </tr>
+            {% for product in objects %}
+            <a href="">
+                <tr>
+                    <td><a href="{% url 'product' product.id %}">{{ product.id }}</a></td>
+                    <td>{{ product.num_rating }}</td>
+                    <td>{{ product.av_score }}</td>
+                    <td>{{ product.var_score }}</td>
+                </tr>
+            </a>
+            {% endfor %}
+        </table>
 
-        <th>ID</th>
-        <th>nº rating</th>
-        <th>Average score</th>
-        <th>Variance score</th>
-    </tr>
-    {% for product in objects %}
-    <tr>
-        <td>{{ product.id }}</td>
-        <td>{{ product.num_rating }}</td>
-        <td>{{ product.av_score }}</td>
-        <td>{{ product.var_score }}</td>
-    </tr>
-    {% endfor %}
-</table>
+        {% include "reviewapp/paginator.html" %}
 
-{% include "reviewapp/paginator.html" %}
-
-{% else %}
-    <p>No products found.</p>
-{% endif %}
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
 
 {% endblock %}

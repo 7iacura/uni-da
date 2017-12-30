@@ -3,16 +3,16 @@
 {% block content %}
 
     {% if objects %}
-        <table style="table-layout:fixed; width: 100%">
+        <table class="tableX">
             <tr>
                 <th>ID</th>
-                <th>nº rating</th>
+                <th>nº reviews</th>
                 <th>Average score</th>
                 <th>Variance score</th>
             </tr>
             {% for user in objects %}
             <tr>
-                <td>{{ user.id }}</td>
+                <td><a href="{% url 'user' user.id %}">{{ user.id }}</a></td>
                 <td>{{ user.num_rating }}</td>
                 <td>{{ user.av_score }}</td>
                 <td>{{ user.var_score }}</td>
