@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Review App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'reviewapp/style.css' %}" />
+</head>
+
+<body>
+
+<header class="u-clearfix">
+    <div class="logo">
+        <a href="/">
+            <h2>Review App</h2>
+        </a>
+    </div>
+    <div role="navigation" class="nav-menu-on">
+        {% include "reviewapp/menu.html" %}
+    </div>
+    <!--<div class="release-notes">-->
+        <!--<p></p>-->
+    <!--</div>-->
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="u-clearfix" style="position: relative">
+    <div class="option one">
+        <h4>Version</h4>
+        <p>1.0</p>
+    </div>
+    <div class="option two">
+        <!--<h4></h4><p></p>-->
+    </div>
+    <a href="https://github.com/7iacura/uni-food/" target="_blank" rel="noopener">
+        <div class="option three">
+            <h4>GitHub</h4>
+            <p>https://github.com/7iacura/uni-food/</p>
+        </div>
+    </a>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{% extends "reviewapp/base.html" %}
+
+{% block content %}
+
+{% if objects %}
+<table style="table-layout:fixed; width: 100%">
+    <tr>
+        <th>ID</th>
+        <th>ID product</th>
+        <th>ID user</th>
+        <th>Score</th>
+        <th>Text</th>
+    </tr>
+    {% for review in objects %}
+    <tr>
+        <td>{{ review.id }}</td>
+        <td>{{ review.productid }}</td>
+        <td>{{ review.userid }}</td>
+        <td>{{ review.score }}</td>
+        <td>{{ review.text }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% include "reviewapp/paginator.html" %}
+
+{% else %}
+    <p>No reviews found.</p>
+{% endif %}
+
+{% endblock %}

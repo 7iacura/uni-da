@@ -1,0 +1,29 @@
+{% extends "reviewapp/base.html" %}
+
+{% block content %}
+
+    {% if objects %}
+        <table style="table-layout:fixed; width: 100%">
+            <tr>
+                <th>ID</th>
+                <th>nº rating</th>
+                <th>Average score</th>
+                <th>Variance score</th>
+            </tr>
+            {% for user in objects %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.num_rating }}</td>
+                <td>{{ user.av_score }}</td>
+                <td>{{ user.var_score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% include "reviewapp/paginator.html" %}
+
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+
+{% endblock %}

@@ -34,8 +34,11 @@ def initialize_dataset():
 	print('DROP TABLEs rating, user, product')
 	# clean db of dataset
 	crs.execute('DROP TABLE IF EXISTS product')
+	crs.execute('DROP TABLE IF EXISTS products')
 	crs.execute('DROP TABLE IF EXISTS user')
+	crs.execute('DROP TABLE IF EXISTS users')
 	crs.execute('DROP TABLE IF EXISTS rating')
+	crs.execute('DROP TABLE IF EXISTS ratings')
 	db.commit()
 
 	print('CREATE TABLEs rating, user, product')
@@ -66,7 +69,6 @@ def import_dataset(filename):
 	db = sqlite3.connect('dataset/dataset.db')
 	crs = db.cursor()
 
-
 	# RATINGS
 	print('INSERT INTO rating')
 	# setup progress bar
@@ -86,12 +88,7 @@ def import_dataset(filename):
 	print()
 
 	# USERS
-
-<<<<<<< HEAD
 	crs.execute("SELECT DISTINCT(userid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY userid")
-=======
-	crs.execute("SELECT DISTINCT(userid),count(score),AVG(score),GROUP_CONCAT(score) FROM ratings GROUP BY userid")
->>>>>>> master
 	list_users = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_users))
@@ -114,11 +111,7 @@ def import_dataset(filename):
 	db.commit()
 
 	# PRODUCTS
-<<<<<<< HEAD
 	crs.execute("SELECT DISTINCT(productid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY productid")
-=======
-	crs.execute("SELECT DISTINCT(productid),count(score),AVG(score),GROUP_CONCAT(score) FROM ratings GROUP BY productid")
->>>>>>> master
 	list_products = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_products))
