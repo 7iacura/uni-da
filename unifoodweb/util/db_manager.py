@@ -17,18 +17,9 @@ class ProgressBar():
 		sys.stdout.flush()
 
 
-def execute_select(select):
-	db = sqlite3.connect('dataset/dataset.db')
-	crs = db.cursor()
-	crs.execute(select)
-	result = crs.fetchall()
-	db.close()
-	return result
-
-
 def initialize_dataset():
 	# connect to database (or create it)
-	db = sqlite3.connect('dataset/dataset.db')
+	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
 	crs = db.cursor()
 
 	print('DROP TABLEs rating, user, product')
@@ -45,25 +36,41 @@ def initialize_dataset():
 										productid text, userid text, score real, text text)''')
 	# create users table
 	crs.execute('''CREATE TABLE IF NOT EXISTS user
-										(id text PRIMARY KEY, num_rating int, av_score real, var_score real)''')
+										(id text PRIMARY KEY, num_rating int, av_score real, var_score real,experience real,experience_level real)''')
 	# create products table
 	crs.execute('''CREATE TABLE IF NOT EXISTS product
-										(id text PRIMARY KEY, num_rating int, av_score real, var_score real)''')
+										(id text PRIMARY KEY, num_rating int, av_score real, var_score real,product_level real)''')
 	db.commit()
 
 	db.close()
+
+def execute_select(select):
+	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
+	crs = db.cursor()
+	crs.execute(select)
+	result = crs.fetchall()
+	db.close()
+	return result
+
+def execute_statement(statement):
+	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
+	crs = db.cursor()
+	crs.execute(statement)
+	db.commit()
+	db.close()
+	return
 
 
 def calculate_variance(user_data):
 	numerator = 0
 	for rate in map(float, user_data[3]):
-		numerator += (rate - user_data[1]) * (rate - user_data[1])
-	return numerator / float(user_data[2])
+		numerator += (rate - user_data[2]) * (rate - user_data[2])
+	return numerator / float(user_data[1])
 
 
 def import_dataset(filename):
 	# connect to database
-	db = sqlite3.connect('dataset/dataset.db')
+	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
 	crs = db.cursor()
 
 
@@ -80,18 +87,14 @@ def import_dataset(filename):
 		# for each row, insert values in db
 		for index, row in enumerate(dataset):
 			x = row[0].split('\t')
-			crs.execute("INSERT INTO rating VALUES (?,?,?,?,?)", (index, str(x[0]), str(x[1]), x[2], str(x[3])))
+			crs.execute("INSERT INTO rating VALUES (?,?,?,?,?)", (index,str(x[0]), str(x[1]), x[2], str(x[3])))
 			prgbar.step()
 	db.commit()
 	print()
 
 	# USERS
 
-<<<<<<< HEAD
-	crs.execute("SELECT DISTINCT(userid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY userid")
-=======
-	crs.execute("SELECT DISTINCT(userid),count(score),AVG(score),GROUP_CONCAT(score) FROM ratings GROUP BY userid")
->>>>>>> master
+	crs.execute("SELECT DISTINCT(userid),count(score),AVG(score),GROUP_CONCAT(score) FROM rating GROUP BY userid")
 	list_users = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_users))
@@ -108,17 +111,13 @@ def import_dataset(filename):
 		user_data.append(user[3].split(','))
 		# calculate variance
 		user_data.append(calculate_variance(user_data))
-		parameters.append((user_data[0], user_data[1], user_data[2], user_data[4]))
+		parameters.append((user_data[0], user_data[1], user_data[2], user_data[4],0,0))
 		prgbar.step()
-	crs.executemany("INSERT INTO user VALUES (?,?,?,?)", parameters)
+	crs.executemany("INSERT INTO user VALUES (?,?,?,?,?,?)", parameters)
 	db.commit()
 
 	# PRODUCTS
-<<<<<<< HEAD
-	crs.execute("SELECT DISTINCT(productid),AVG(score),count(score),GROUP_CONCAT(score) FROM rating GROUP BY productid")
-=======
-	crs.execute("SELECT DISTINCT(productid),count(score),AVG(score),GROUP_CONCAT(score) FROM ratings GROUP BY productid")
->>>>>>> master
+	crs.execute("SELECT DISTINCT(productid),count(score),AVG(score),GROUP_CONCAT(score) FROM rating GROUP BY productid")
 	list_products = crs.fetchall()
 	# setup progress bar
 	prgbar = ProgressBar(40, len(list_products))
@@ -134,8 +133,8 @@ def import_dataset(filename):
 		product_data.append(product[3].split(','))
 		# calculate variance
 		product_data.append(calculate_variance(product_data))
-		parameters.append((product_data[0], product_data[1], product_data[2], product_data[4]))
+		parameters.append((product_data[0], product_data[1], product_data[2], product_data[4],0))
 		prgbar.step()
-	crs.executemany("INSERT INTO product VALUES (?,?,?,?)", parameters)
+	crs.executemany("INSERT INTO product VALUES (?,?,?,?,?)", parameters)
 	db.commit()
 	db.close()
