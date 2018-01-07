@@ -2,12 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Review App</title>
+    <title>{% block title %}Review App {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="{% static 'reviewapp/style.css' %}" />
+    <script type="text/javascript" src="{% static 'reviewapp/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'reviewapp/highcharts.js' %}"></script>
+
+    {% block includes %}{% endblock %}
+
 </head>
 
 <body>
@@ -27,25 +31,31 @@
 </header>
 
 <main>
-    {% block content %}
-    {% endblock %}
+
+    {% block content %}{% endblock %}
+
 </main>
 
 <footer class="u-clearfix" style="position: relative">
     <div class="option one">
-        <h4>Version</h4>
-        <p>1.1</p>
+        <p class="h">Version</p>
+        <p>1.2</p>
     </div>
     <div class="option two">
         <!--<h4></h4><p></p>-->
     </div>
     <a href="https://github.com/7iacura/uni-food/" target="_blank" rel="noopener">
         <div class="option three">
-            <h4>GitHub</h4>
+            <p class="h">GitHub</p>
             <p>https://github.com/7iacura/uni-food/</p>
         </div>
     </a>
 </footer>
+
+
+{% block jsexec %}
+
+{% endblock %}
 
 </body>
 

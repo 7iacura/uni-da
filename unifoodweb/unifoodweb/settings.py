@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'reviewapp.apps.ReviewappConfig',
+		'reviewapp.apps.ReviewappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chartit',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,8 @@ WSGI_APPLICATION = 'unifoodweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-PARENT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
-DATASET_DIR = os.path.join(PARENT_DIR, 'dataset/dataset.db')
+# PARENT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+DATASET_DIR = os.path.join(BASE_DIR, 'reviewapp.db')
 
 DATABASES = {
     'default': {

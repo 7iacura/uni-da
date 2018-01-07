@@ -14,8 +14,8 @@
             <tr>
                 <td><a href="{% url 'user' user.id %}">{{ user.id }}</a></td>
                 <td>{{ user.num_rating }}</td>
-                <td>{{ user.av_score }}</td>
-                <td>{{ user.var_score }}</td>
+                <td>{{ user.av_score|floatformat:3 }}</td>
+                <td>{{ user.var_score|floatformat:3 }}</td>
             </tr>
             {% endfor %}
         </table>

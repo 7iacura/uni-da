@@ -15,8 +15,8 @@
                 <tr>
                     <td><a href="{% url 'product' product.id %}">{{ product.id }}</a></td>
                     <td>{{ product.num_rating }}</td>
-                    <td>{{ product.av_score }}</td>
-                    <td>{{ product.var_score }}</td>
+                    <td>{{ product.av_score|floatformat:3 }}</td>
+                    <td>{{ product.var_score|floatformat:3 }}</td>
                 </tr>
             </a>
             {% endfor %}

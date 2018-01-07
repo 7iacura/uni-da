@@ -31,7 +31,7 @@ svg:not(:root) {
 }
 body {
 	max-width: 960px;
-	color: #525252;
+	color: #757575;
 	font-family: Roboto, sans-serif;
 }
 main {
@@ -210,12 +210,12 @@ h2 {
 	max-width: 500px;
 	margin: 5px auto 0;
 }
-main p {
+main > p {
 	font-size: 16px;
 	line-height: 20px;
 	max-width: 390px;
 	margin: 15px auto 0;
-	color: #747755;
+	color: #757575;
 }
 footer {
 	padding: 30px 0;
@@ -258,12 +258,15 @@ footer {
 	margin-right: 10px;
 }
 .option h4 {
-	color: #E91E63;
 	font-size: 19px;
+}
+.option h4,
+.option p.h {
+	color: #E91E63;
 }
 .option p {
 	font-weight: 300;
-	font-size: 15px;
+	font-size: 13px;
 	padding-top: 3px;
 	color: #757575;
 }
@@ -358,13 +361,14 @@ footer {
     padding: 0;
 }
 [role="navigation"] li.active {
-    text-shadow: 1px 1px 1px #FF9800;
+    /*text-shadow: 1px -1px 0px rgba(117, 117, 117, 0.3);*/
+    font-weight: bold;
 }
 [role="navigation"] li {
     font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
     font-size: 13px;
     display: block;
-    font-weight: 700;
+    font-weight: normal;
     line-height: 16px;
     text-align: left;
     text-transform: uppercase;
@@ -393,7 +397,27 @@ footer {
     }
 }
 
-button {
+.block {
+    overflow: hidden;
+    padding: 25px;
+    margin-top: 10px;
+    border: 1px solid #EFEFEF;
+    box-shadow: 0px 0px 5px 0px #EFEFEF;
+}
+.block:first-child {
+    margin-top: 0px;
+}
+.block, .block p {
+    text-align: left;
+}
+.block p.title {
+    font-weight: bold;
+    color: #E91E63;
+    padding: 5px 1px;
+}
+
+button, .button,
+.input-file + label {
     padding: 5px;
     border-radius: 3px;
     background-color: #E91E63;
@@ -401,6 +425,23 @@ button {
     font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
     font-size: 13px;
     cursor: pointer;
+}
+button:disabled, .button:disabled {
+    background-color: #A9A9A9;
+    cursor: not-allowed;
+}
+button:hover, .button:hover,
+.input-file + label:hover {
+    background-color: #E3638E
+}
+
+.input-file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 
 table.tableX {
@@ -410,6 +451,9 @@ table.tableX {
 table.tableX th {
     padding: 7px;
     background: rgba(0, 0, 0, 0.1);
+}
+table.tableX {
+    word-break: break-all;
 }
 table.tableY {
     table-layout:fixed;
@@ -425,3 +469,14 @@ table.tableY td {
     text-align: left;
 }
 
+.chart-50, .chart-33 {
+    float: left;
+}
+.chart-50 {
+    width: 48%;
+    margin: auto 2px;
+}
+.chart-33 {
+    width: 32%;
+    margin: auto 1px;
+}
