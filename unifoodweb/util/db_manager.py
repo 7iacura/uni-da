@@ -1,5 +1,11 @@
 import sqlite3, csv, sys
+from math import pow
 from pprint import pprint
+
+
+# path_database = 'reviewapp.db'
+path_database = ''
+
 
 class ProgressBar():
 
@@ -17,43 +23,78 @@ class ProgressBar():
 		sys.stdout.flush()
 
 
-def initialize_dataset():
+def set_database_path(path):
+	global path_database
+	path_database = path
+
+
+def initialize_util():
+	global path_database
+
 	# connect to database (or create it)
-	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
+	db = sqlite3.connect(path_database)
+	crs = db.cursor()
+
+	print('DROP TABLEs utils')
+	# clean db of dataset
+	crs.execute('DROP TABLE IF EXISTS utils')
+	db.commit()
+
+	print('CREATE TABLEs utils\n')
+	# create utils table
+	crs.execute('''CREATE TABLE IF NOT EXISTS utils
+										(id integer PRIMARY KEY, type text, name text)''')
+	db.commit()
+
+	db.close()
+
+
+def initialize_dataset():
+	global path_database
+
+	# connect to database (or create it)
+	db = sqlite3.connect(path_database)
 	crs = db.cursor()
 
 	print('DROP TABLEs rating, user, product')
 	# clean db of dataset
 	crs.execute('DROP TABLE IF EXISTS product')
+	crs.execute('DROP TABLE IF EXISTS products')
 	crs.execute('DROP TABLE IF EXISTS user')
+	crs.execute('DROP TABLE IF EXISTS users')
 	crs.execute('DROP TABLE IF EXISTS rating')
+	crs.execute('DROP TABLE IF EXISTS ratings')
 	db.commit()
 
-	print('CREATE TABLEs rating, user, product')
+	print('CREATE TABLEs rating, user, product\n')
 # create ratings table
 	crs.execute('''CREATE TABLE IF NOT EXISTS rating
 										(id integer PRIMARY KEY,
 										productid text, userid text, score real, text text)''')
 	# create users table
 	crs.execute('''CREATE TABLE IF NOT EXISTS user
-										(id text PRIMARY KEY, num_rating int, av_score real, var_score real,experience real,experience_level real)''')
+										(id text PRIMARY KEY, num_rating int, av_score real, var_score real, experience real, experience_level real)''')
 	# create products table
 	crs.execute('''CREATE TABLE IF NOT EXISTS product
-										(id text PRIMARY KEY, num_rating int, av_score real, var_score real,product_level real)''')
+										(id text PRIMARY KEY, num_rating int, av_score real, var_score real, product_level real)''')
 	db.commit()
 
 	db.close()
 
+
 def execute_select(select):
-	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
+	global path_database
+	db = sqlite3.connect(path_database)
 	crs = db.cursor()
 	crs.execute(select)
 	result = crs.fetchall()
 	db.close()
 	return result
 
+
 def execute_statement(statement):
-	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
+	global path_database
+	db = sqlite3.connect(path_database)
 	crs = db.cursor()
 	crs.execute(statement)
 	db.commit()
@@ -61,23 +102,23 @@ def execute_statement(statement):
 	return
 
 
-def calculate_variance(user_data):
+def calculate_variance(object_data):
 	numerator = 0
-	for rate in map(float, user_data[3]):
-		numerator += (rate - user_data[2]) * (rate - user_data[2])
-	return numerator / float(user_data[1])
+	for rate in object_data[3]:
+		numerator += pow((float(rate) - object_data[2]), 2)
+	return abs(numerator / float(object_data[1]))
 
 
 def import_dataset(filename):
+	global path_database
 	# connect to database
-	db = sqlite3.connect('C:/Users/Danilo/PycharmProjects/uni-food/dataset/dataset.db')
+	db = sqlite3.connect(path_database)
 	crs = db.cursor()
-
 
 	# RATINGS
 	print('INSERT INTO rating')
 	# setup progress bar
-	len_dataset = sum(1 for row in open(filename, 'r', encoding='utf-8', errors='ignore'))
+	len_dataset = sum(1 for _ in open(filename, 'r', encoding='utf-8', errors='ignore'))
 	prgbar = ProgressBar(40, len_dataset)
 	# read dataset
 	with open(filename, 'r', encoding='utf-8', errors='ignore') as food:
@@ -93,7 +134,6 @@ def import_dataset(filename):
 	print()
 
 	# USERS
-
 	crs.execute("SELECT DISTINCT(userid),count(score),AVG(score),GROUP_CONCAT(score) FROM rating GROUP BY userid")
 	list_users = crs.fetchall()
 	# setup progress bar
@@ -111,7 +151,7 @@ def import_dataset(filename):
 		user_data.append(user[3].split(','))
 		# calculate variance
 		user_data.append(calculate_variance(user_data))
-		parameters.append((user_data[0], user_data[1], user_data[2], user_data[4],0,0))
+		parameters.append((user_data[0], user_data[1], user_data[2], user_data[4], 0, 0))
 		prgbar.step()
 	crs.executemany("INSERT INTO user VALUES (?,?,?,?,?,?)", parameters)
 	db.commit()
@@ -133,7 +173,7 @@ def import_dataset(filename):
 		product_data.append(product[3].split(','))
 		# calculate variance
 		product_data.append(calculate_variance(product_data))
-		parameters.append((product_data[0], product_data[1], product_data[2], product_data[4],0))
+		parameters.append((product_data[0], product_data[1], product_data[2], product_data[4], 0))
 		prgbar.step()
 	crs.executemany("INSERT INTO product VALUES (?,?,?,?,?)", parameters)
 	db.commit()

@@ -5,7 +5,7 @@ from django.template import loader
 from django.core.paginator import Paginator
 from django.db.models import Count
 
-from db_manager import initialize_util, initialize_dataset, import_dataset
+from db_manager import set_database_path, initialize_util, initialize_dataset, import_dataset
 
 from .models import Util, User, Product, Rating
 
@@ -14,6 +14,7 @@ from chartit import DataPool, Chart
 
 RESET_DB_ON_RUNSERVER = False
 
+set_database_path('reviewapp.db')
 
 if RESET_DB_ON_RUNSERVER:
 	initialize_util()

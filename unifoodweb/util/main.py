@@ -1,9 +1,33 @@
 
 import os, sys
 # from PyQt5.QtWidgets import *
-from db_manager import initialize_dataset, import_dataset
+from db_manager import set_database_path, initialize_util, initialize_dataset, import_dataset
 # from sentiment import make_sentiment, parse_format, use_vader
 # from pprint import pprint
+
+
+current_path = os.path.dirname(__file__)
+print(current_path)
+
+database = 'reviewapp.db'
+database_path = os.path.join(os.path.dirname(current_path), database)
+print(database_path)
+
+file = 'food.tsv'
+file_path = os.path.join(os.path.dirname(os.path.dirname(current_path)), file)
+print(file_path)
+
+
+set_database_path(database_path)
+
+initialize_util()
+initialize_dataset()
+
+import_dataset(file_path)
+
+
+
+
 
 # class Table(QWidget):
 #
@@ -123,13 +147,3 @@ from db_manager import initialize_dataset, import_dataset
 #     sys.exit(app.exec_())
 
 
-current_path = os.path.dirname(__file__)
-print(current_path)
-
-file = 'food.tsv'
-file_path = os.path.join(os.path.dirname(os.path.dirname(current_path)), file)
-print(file_path)
-
-initialize_dataset()
-
-import_dataset(file_path)

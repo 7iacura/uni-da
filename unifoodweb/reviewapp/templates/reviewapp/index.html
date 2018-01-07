@@ -1,8 +1,10 @@
 {% extends "reviewapp/base.html" %}
 
 {% block includes %}
-    {% load chartit %}
-    {{ chart_list | load_charts:'user_rating_chart,user_score_chart,product_rating_chart,product_score_chart' }}
+    {% if dataset %}
+        {% load chartit %}
+        {{ chart_list | load_charts:'user_rating_chart,user_score_chart,product_rating_chart,product_score_chart' }}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
