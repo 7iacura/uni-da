@@ -11,7 +11,7 @@
 
     <div class="block">
         <p class="title">Dataset</p>
-        {% if dataset %}Imported dataset from file <b>{{ dataset }}</b> in database {% endif %}
+        {% if dataset %}Dataset from file <b>{{ dataset }}</b>{% endif %}
         {% if not dataset %}
         <a href="/reviewapp/import-dataset"><button>Import dataset</button></a>
         {% endif %}

@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1386ba27-5475-418b-b280-f5ad28da3727" name="Default" comment="1.3 + merge from master&#10;(minor fix)&#10;warning: there are some problem on first runserver (about chart render)">
-      <change beforePath="" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/import-dataset.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+    <list default="true" id="1386ba27-5475-418b-b280-f5ad28da3727" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp.db" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp.db" />
-      <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html" />
       <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html" />
-      <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp/urls.py" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/urls.py" />
-      <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" />
     </list>
     <ignored path=".idea/" />
     <ignored path="dataset/" />
@@ -68,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="41" column="14" lean-forward="false" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+            <state relative-caret-position="252">
+              <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -98,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="79" />
+            <state relative-caret-position="195">
+              <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -159,8 +154,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Mattia Curatitoli &lt;m.curatitoli@gmail.com&gt;" />
         <option value="7iacura &lt;m.curatitoli@gmail.com&gt;" />
+        <option value="Mattia Curatitoli &lt;m.curatitoli@gmail.com&gt;" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -209,11 +204,11 @@
         <option value="$PROJECT_DIR$/unifoodweb/util/sentiment.py" />
         <option value="$PROJECT_DIR$/unifoodweb/util/db_manager.py" />
         <option value="$PROJECT_DIR$/unifoodweb/util/main.py" />
-        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/urls.py" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/import-dataset.html" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/views.py" />
         <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html" />
+        <option value="$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html" />
       </list>
     </option>
   </component>
@@ -434,7 +429,8 @@
     <MESSAGE value="1.3&#10;&#10;- 1.2: import dataset&#10;- 1.3: charts about dataset&#10;- inserted form, #todo: connect to method&#10;- inserted train button, #todo: connect to method" />
     <MESSAGE value="Merge branch 'master' of https://github.com/7iacura/uni-food into setup_django&#10;&#10;# Conflicts:&#10;#&#9;unifoodweb/util/db_manager.py&#10;#&#9;unifoodweb/util/sentiment.py" />
     <MESSAGE value="1.3 + merge from master&#10;(minor fix)&#10;warning: there are some problem on first runserver (about chart render)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.3 + merge from master&#10;(minor fix)&#10;warning: there are some problem on first runserver (about chart render)" />
+    <MESSAGE value="1.3&#10;fixed upload dataset" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.3&#10;fixed upload dataset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -719,14 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/import-dataset.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -747,8 +735,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="41" column="14" lean-forward="false" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+        <state relative-caret-position="252">
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unifoodweb/reviewapp/templates/reviewapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
           <folding />
         </state>
       </provider>
