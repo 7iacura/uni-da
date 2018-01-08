@@ -7,6 +7,9 @@ urlpatterns = [
     # /reviewapp/
     path('', views.index, name='index'),
 
+    # /import-dataset/
+    path('import-dataset', views.importdataset, name='importdataset'),
+
     # /users/
     path('users/', views.users, name='users'),
     # /user/0/

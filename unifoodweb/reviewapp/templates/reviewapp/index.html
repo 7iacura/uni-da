@@ -13,14 +13,7 @@
         <p class="title">Dataset</p>
         {% if dataset %}Imported dataset from file <b>{{ dataset }}</b> in database {% endif %}
         {% if not dataset %}
-        <br>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <button type="submit" id="import-dataset" disabled>Import dataset</button>
-            <input type="file" name="file" id="file" class="input-file" />
-            <label for="file" type="submit">Choose a file</label>
-            <span></span>
-        </form>
+        <a href="/reviewapp/import-dataset"><button>Import dataset</button></a>
         {% endif %}
     </div>
 

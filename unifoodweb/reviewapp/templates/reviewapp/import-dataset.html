@@ -1,0 +1,32 @@
+{% extends "reviewapp/base.html" %}
+
+{% block content %}
+
+    <div class="block">
+        <p class="title">Import dataset</p>
+        {% if not dataset %}
+        <br>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" id="file" class="input-file" />
+            <label for="file" type="submit">Choose a file</label>
+            <span></span>
+            <br><br>
+            <button type="submit" id="import-dataset" disabled>Import dataset</button>
+        </form>
+        {% endif %}
+
+        {% if dataset %}
+        Imported dataset from file <b>{{ dataset }}</b> in database
+        <br><br>
+        <a href="/reviewapp"><button>Back</button></a>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block jsexec %}
+    <script type="text/javascript" src="/static/reviewapp/input-file.js" />
+    <script type="text/javascript"></script>
+{% endblock %}
