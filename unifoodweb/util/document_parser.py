@@ -1,10 +1,9 @@
-import sys
 from nltk.tokenize import RegexpTokenizer
 from stop_words import get_stop_words
 from nltk.stem.porter import PorterStemmer
 
 
-class Document_Parser():
+class DocumentParser():
 
 	def __init__(self):
 		# initialize tokenizer
@@ -18,14 +17,14 @@ class Document_Parser():
 		# create p_stemmer of class PorterStemmer
 		self.p_stemmer = PorterStemmer()
 
-		# set min lenght
+		# set min length
 		self.min_len = 5
 
 	def add_to_stop(self, word):
 		self.en_stop.append(word)
 
-	def set_min_lenght(self, len):
-		self.min_len = len
+	def set_min_length(self, ln):
+		self.min_len = ln
 
 	def parse(self, document):
 		raw = document.lower()
@@ -54,8 +53,8 @@ class Document_Parser():
 # doc_e = "Health professionals say that brocolli is good for your health."
 # doc_set = [doc_a, doc_b, doc_c, doc_d, doc_e]
 #
-# # create class Document_Parser()
-# parser = Document_Parser()
+# # create class DocumentParser()
+# parser = DocumentParser()
 # # loop on documents
 # for doc in doc_set:
 # 	print(doc)
