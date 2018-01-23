@@ -15,26 +15,33 @@ class Document_Parser():
 		self.en_stop.append('<br>')
 		self.en_stop.append('br')
 
-		# Create p_stemmer of class PorterStemmer
+		# create p_stemmer of class PorterStemmer
 		self.p_stemmer = PorterStemmer()
+
+		# set min lenght
+		self.min_len = 5
 
 	def add_to_stop(self, word):
 		self.en_stop.append(word)
 
+	def set_min_lenght(self, len):
+		self.min_len = len
+
 	def parse(self, document):
-		# print(document)
 		raw = document.lower()
 		tokens = self.tokenizer.tokenize(raw)
 		# remove stop words from tokens
 		stopped_tokens = [i for i in tokens if not i in self.en_stop]
 		# stem token
 		stemmed_tokens = [self.p_stemmer.stem(i) for i in stopped_tokens]
-		# Convert to a set and back into a list.
+		# convert to a set and back into a list
 		stemmed_tokens_set = set(stemmed_tokens)
+		# remove duplicated
 		stemmed_tokens_without_duplicated = list(stemmed_tokens_set)
-		# print(stemmed_tokens_without_duplicated, '\n')
+		# remove token with len < self.min_len
+		stemmed_tokens_over_min_len = [i for i in stemmed_tokens_without_duplicated if len(i) >= self.min_len]
 
-		return stemmed_tokens_without_duplicated
+		return stemmed_tokens_over_min_len
 
 
 # # as demo,
@@ -51,5 +58,7 @@ class Document_Parser():
 # parser = Document_Parser()
 # # loop on documents
 # for doc in doc_set:
-# 	parser.parse(doc)
+# 	print(doc)
+# 	p = parser.parse(doc)
+# 	print(p, '\n')
 
