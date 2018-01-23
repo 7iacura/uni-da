@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1386ba27-5475-418b-b280-f5ad28da3727" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/unifoodweb/util/document_parser.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/unifoodweb/reviewapp.db" afterPath="$PROJECT_DIR$/unifoodweb/reviewapp.db" />
+      <change beforePath="$PROJECT_DIR$/unifoodweb/util/document_parser.py" afterPath="$PROJECT_DIR$/unifoodweb/util/document_parser.py" />
     </list>
     <ignored path=".idea/" />
     <ignored path="dataset/" />
@@ -107,8 +105,8 @@
       <file leaf-file-name="document_parser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/unifoodweb/util/document_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
+            <state relative-caret-position="388">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -416,7 +414,7 @@
     <frame x="0" y="22" width="1440" height="873" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17829457" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46410257" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48205128" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23205128" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33546734" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -455,7 +453,8 @@
     <MESSAGE value="1.3 + merge from master&#10;(minor fix)&#10;warning: there are some problem on first runserver (about chart render)" />
     <MESSAGE value="1.3&#10;fixed upload dataset" />
     <MESSAGE value="1.3&#10;minor" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.3&#10;minor" />
+    <MESSAGE value="1.4&#10;document_parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.4&#10;document_parser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -762,8 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/unifoodweb/util/document_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="388">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
