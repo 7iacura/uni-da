@@ -30,13 +30,13 @@ Exam project: Data Analytics (2016/17) - University of Milan Bicocca
 	3.2 Calcualte "general" user experienxe
 
 [4] DATA INFO GRAPHIC
-	- Model:	Distribution of topics for docs (reviews)
-	- Model:	Average variance of topics for docs
-	- User:		Distribution of topics
-	- User:	 	Experience for topics
-	- User:	 	Recommendations (?)
-	- Product: 	Distribution of topics
-	- Product: 	Distribution of reviews
+	* Model:	Distribution of topics for docs (reviews)
+	* Model:	Average variance of topics for docs
+	* User:		Distribution of topics
+	* User:	 	Experience for topics
+	* User:	 	Recommendations (?)
+	* Product: 	Distribution of topics
+	* Product: 	Distribution of reviews
 
 #### Based on article:
 
