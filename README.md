@@ -4,13 +4,9 @@ Exam project: Data Analytics (2016/17) - University of Milan Bicocca
 
 #### Project purposes 
 
----
+///
 
 #### Project Report
-
-----------------------
- Project step-by-step
-----------------------
 
 [1] DATASET
 
