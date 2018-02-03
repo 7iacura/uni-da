@@ -10,7 +10,7 @@ Exam project: Data Analytics (2016/17) - University of Milan Bicocca
 
 [1] DATASET
 
-	1.1 Parsing dataset from .tsv into DB (SQLite)
+	1.1 Parsing dataset from .tsv (or .json) into DB (SQLite)
 
 [2] TOPIC MODEL
 
@@ -31,13 +31,13 @@ Exam project: Data Analytics (2016/17) - University of Milan Bicocca
 
 [4] DATA INFO GRAPHIC
 
-	- Model:   Distribution of topics for docs (reviews)
-	- Model:   Average variance of topics for docs
-	- User:    Distribution of topics
-	- User:    Experience for topics
-	- User:    Recommendations (?)
-	- Product: Distribution of topics
-	- Product: Distribution of reviews
+	- User:    Distribution of topics (pie chart)
+	- User:    Distribution of topics (line = topic, x = review timestamp, y = affinity topic-review)
+	- User:    Distribution of reviews (pie chart)
+	- [User:    Experience for topics]
+	- [User:    Recommendations (?)]
+	- Product: Distribution of topics (pie chart)
+	- Product: Distribution of reviews (pie chart)
 
 #### Based on article:
 
