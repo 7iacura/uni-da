@@ -8,10 +8,6 @@ dataset/*
 .idea/*
 .idea/workspace.xml
 
-
-
-*.pyc
-
-.idea/workspace.xml
-
 *.db
+
+unifoodweb/dataset/food.json
