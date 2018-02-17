@@ -1,0 +1,28 @@
+{% extends "reviewapp/_base.html" %}
+
+{% block content %}
+
+    {% if objects %}
+
+        <table class="tableX">
+            <tr>
+                <th class="checkbox">ID</th>
+                <!--<th>ID name</th>-->
+                <th>Sentiment</th>
+                <th>Words</th>
+            </tr>
+            {% for topic in objects %}
+            <tr>
+                <td class="checkbox"><a href="{% url 'user' user.id %}">{{ topic.id }}</a></td>
+                <!--<td>{{ topic.name }}</td>-->
+                <td>{{ topic.sentiment }}</td>
+                <td>{{ topic.words }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <p>No topics found.</p>
+    {% endif %}
+
+{% endblock %}

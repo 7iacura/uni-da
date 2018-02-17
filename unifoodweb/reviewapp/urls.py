@@ -1,36 +1,42 @@
 from django.urls import path
-
 from . import views
-
-# urlpatterns = [
-#     # ex: /polls/
-#     path('', views.index, name='index'),
-#     # ex: /polls/5/
-#     path('<int:question_id>/', views.detail, name='detail'),
-#     # ex: /polls/5/results/
-#     path('<int:question_id>/results/', views.results, name='results'),
-#     # ex: /polls/5/vote/
-#     path('<int:question_id>/vote/', views.vote, name='vote'),
-# ]
 
 urlpatterns = [
 
-    # /reviewapp/
-    path('', views.index, name='index'),
+	# /reviewapp/
+	path('', views.index, name='index'),
 
-    # /users/
-    path('users/', views.users, name='users'),
-    # /user/0/
-    path('user/<int:user_id>', views.user, name='user'),
+	# /loading/
+	path('loading/', views.loading, name='loading'),
 
-    # /products/
-    path('products/', views.products, name='products'),
-    # /product/0/
-    path('product/<int:product_id>', views.product, name='product'),
+	# /dataset/
+	path('dataset/', views.dataset, name='dataset'),
+	# # /dataset-loading/
+	# path('dataset-loading/', views.dataset_loading, name='dataset_loading'),
+	# /dataset-remove/
+	path('dataset-remove/', views.dataset_remove, name='dataset_remove'),
 
-    # /ratings/
-    path('ratings/', views.ratings, name='ratings'),
-    # /rating/0/
-    path('rating/<int:rating_id>', views.rating, name='rating'),
+	# /users/
+	path('users/', views.users, name='users'),
+	# /user/X/
+	path('user/<str:user_id>', views.user, name='user'),
+
+	# /products/
+	path('products/', views.products, name='products'),
+	# /product/X/
+	path('product/<str:product_id>', views.product, name='product'),
+
+	# /ratings/
+	path('ratings/', views.ratings, name='ratings'),
+	# /rating/X/
+	path('rating/<int:rating_id>', views.rating, name='rating'),
+
+	# /topics/
+	path('topics/', views.topics, name='topics'),
+	# /topic/X/
+	path('topic/<int:topic_id>', views.topic, name='topic'),
+
+	# /dashboard/
+	path('dashboard/', views.dashboard, name='dashboard'),
+
 ]
-

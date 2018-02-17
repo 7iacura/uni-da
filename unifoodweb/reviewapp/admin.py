@@ -8,8 +8,10 @@ from .models import Rating
 class UserAdmin(admin.ModelAdmin):
 	list_display = ('id', 'num_rating', 'av_score', 'var_score')
 
+
 class ProductAdmin(admin.ModelAdmin):
 	list_display = ('id', 'num_rating', 'av_score', 'var_score')
+
 
 class RatingAdmin(admin.ModelAdmin):
 	list_display = ('id', 'productid', 'userid', 'score', 'text')

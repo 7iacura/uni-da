@@ -1,0 +1,27 @@
+{% extends "reviewapp/_base.html" %}
+
+{% block content %}
+
+<!--<div class="block">-->
+    <!--<p class="title">Homepage</p>-->
+    <!--<p>-->
+        <!--We have to describe something here.-->
+    <!--</p>-->
+<!--</div>-->
+
+<div class="block">
+    <p class="title">Dataset</p>
+    {% if not dataset %}
+    <a href="/reviewapp/dataset"><button>Import dataset</button></a>
+    {% endif %}
+    {% if dataset %}
+    <p>Dataset from file <b>{{ dataset }}</b></p>
+    <br>
+    <p>Users: <b>{{ users }}</b></p>
+    <p>Products: <b>{{ products }}</b></p>
+    <p>Reviews: <b>{{ reviews }}</b></p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

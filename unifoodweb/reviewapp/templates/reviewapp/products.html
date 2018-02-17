@@ -1,0 +1,31 @@
+{% extends "reviewapp/_base.html" %}
+
+{% block content %}
+
+    {% if objects %}
+        <table class="tableX">
+            <tr>
+                <th>ID</th>
+                <th>nº reviews</th>
+                <th>Average score</th>
+                <th>Variance score</th>
+            </tr>
+            {% for product in objects %}
+            <a href="">
+                <tr>
+                    <td><a href="{% url 'product' product.id %}">{{ product.id }}</a></td>
+                    <td>{{ product.num_rating }}</td>
+                    <td>{{ product.av_score|floatformat:3 }}</td>
+                    <td>{{ product.var_score|floatformat:3 }}</td>
+                </tr>
+            </a>
+            {% endfor %}
+        </table>
+
+        {% include "reviewapp/_paginator.html" %}
+
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+
+{% endblock %}

@@ -13,3 +13,5 @@ dataset/*
 *.pyc
 
 .idea/workspace.xml
+
+*.db

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Review App {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'reviewapp/style.css' %}" />
+    {% block includes %}{% endblock %}
+
+</head>
+
+<body>
+
+<header class="u-clearfix">
+    <div class="logo">
+        <!--<a href="/">-->
+            <h2>Review App</h2>
+        <!--</a>-->
+    </div>
+    <div role="navigation" class="nav-menu-on">
+        {% include "reviewapp/_menu-lock.html" %}
+    </div>
+</header>
+
+<main>
+
+    {% block content %}{% endblock %}
+
+</main>
+
+<footer class="u-clearfix" style="position: relative">
+    <div class="option one">
+        <p class="h">Version</p>
+        <p>2.0</p>
+    </div>
+    <div class="option two">
+        <!--<h4></h4><p></p>-->
+    </div>
+    <!--<a href="https://github.com/7iacura/uni-food/" target="_blank" rel="noopener">-->
+        <div class="option three">
+            <p class="h">GitHub</p>
+            <p>https://github.com/7iacura/uni-food/</p>
+        </div>
+    <!--</a>-->
+</footer>
+
+
+{% block jsexec %}
+
+{% endblock %}
+
+</body>
+
+</html>
