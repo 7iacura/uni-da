@@ -1,0 +1,36 @@
+{% extends "reviewapp/_base.html" %}
+
+{% block content %}
+
+{% if builted_model %}
+
+<div class="block">
+    <p class="title">Dashboard</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" id="reset">Reset model</button>
+    </form>
+
+    <br>
+    <table class="tableY">
+        <tr><td>Nº words</td><td>{{ words }}</td></tr>
+        <tr><td>Nº topics</td><td>{{ topics }}</td></tr>
+        <tr><td>Nº iterations</td><td>{{ iterations }}</td></tr>
+        <tr><td>Users</td>
+            <td>
+                {% for user in checked_users %}
+                <label class="orange">{{ user }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% else %}
+
+<p>No data to display.</p>
+
+{% endif %}
+
+{% endblock %}

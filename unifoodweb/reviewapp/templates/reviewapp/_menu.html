@@ -1,4 +1,14 @@
 <ul>
+    {% if request.path == '/reviewapp/dashboard/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+    <a href="/reviewapp/dashboard">Dashboard</a>
+    </li>
+    {% if request.path == '/reviewapp/dataset/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+    <a href="/reviewapp/dataset">Dataset</a>
+    </li>
     {% if request.path == '/reviewapp/users/' %} <li class="active">
     {% else %}<li>
     {% endif %}
@@ -14,4 +24,9 @@
     {% endif %}
         <a href="/reviewapp/ratings">Reviews</a>
     </li>
+    {% if request.path == '/reviewapp/topics/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+    <a href="/reviewapp/topics">Topics</a>
+</li>
 </ul>

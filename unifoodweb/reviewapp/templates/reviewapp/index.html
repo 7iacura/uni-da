@@ -1,87 +1,27 @@
-{% extends "reviewapp/base.html" %}
-
-{% block includes %}
-    {% if dataset %}
-        {% load chartit %}
-        {{ chart_list | load_charts:'user_rating_chart,user_score_chart,product_rating_chart,product_score_chart' }}
-    {% endif %}
-{% endblock %}
+{% extends "reviewapp/_base.html" %}
 
 {% block content %}
 
-    <div class="block">
-        <p class="title">Dataset</p>
-        {% if dataset %}Dataset from file <b>{{ dataset }}</b>{% endif %}
-        {% if not dataset %}
-        <a href="/reviewapp/import-dataset"><button>Import dataset</button></a>
-        {% endif %}
-    </div>
+<!--<div class="block">-->
+    <!--<p class="title">Homepage</p>-->
+    <!--<p>-->
+        <!--We have to describe something here.-->
+    <!--</p>-->
+<!--</div>-->
 
+<div class="block">
+    <p class="title">Dataset</p>
+    {% if not dataset %}
+    <a href="/reviewapp/dataset"><button>Import dataset</button></a>
+    {% endif %}
     {% if dataset %}
-    <div class="block">
-        <button>Train</button>
-    </div>
-
-    <div class="block">
-        <p class="title">New review</p>
-        <br>
-        <form method="POST">
-            <table>
-                <tr>
-                    <td>User</td>
-                    <td>
-                        <select>
-                            {% for user in user_list %}
-                            <option value="{{ user.id }}"
-                                    {% if user == current_user %}selected="selected"{% endif %}>
-                                {{ user.id }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Product</td>
-                    <td>
-                        <select>
-                            {% for product in product_list %}
-                            <option value="{{ product.id }}"
-                                    {% if product == current_product %}selected="selected"{% endif %}>
-                                {{ product.id }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Review</td>
-                    <td>
-                        <textarea></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button type="submit" id="">Insert review</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-
-    <div class="block">
-        <p class="title">Dataset charts</p>
-        <div id="user_rating_chart" class="chart-50"></div>
-        <div id="user_score_chart" class="chart-50"></div>
-        <div id="product_rating_chart" class="chart-50"></div>
-        <div id="product_score_chart" class="chart-50"></div>
-    </div>
+    <p>Dataset from file <b>{{ dataset }}</b></p>
+    <br>
+    <p>Users: <b>{{ users }}</b></p>
+    <p>Products: <b>{{ products }}</b></p>
+    <p>Reviews: <b>{{ reviews }}</b></p>
     {% endif %}
 
+</div>
 
-{% endblock %}
-
-{% block jsexec %}
-    <script type="text/javascript" src="/static/reviewapp/input-file.js" />
-    <script type="text/javascript"></script>
 {% endblock %}

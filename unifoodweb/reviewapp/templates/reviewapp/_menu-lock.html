@@ -1,0 +1,32 @@
+<ul>
+    {% if request.path == '/reviewapp/dashboard/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Dashboard
+    </li>
+    {% if request.path == '/reviewapp/dataset/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Dataset
+    </li>
+    {% if request.path == '/reviewapp/users/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Users
+    </li>
+    {% if request.path == '/reviewapp/products/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Products
+    </li>
+    {% if request.path == '/reviewapp/ratings/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Reviews
+    </li>
+    {% if request.path == '/reviewapp/topics/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Topics
+</li>
+</ul>

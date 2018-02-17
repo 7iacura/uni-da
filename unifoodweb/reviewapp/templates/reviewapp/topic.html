@@ -1,0 +1,12 @@
+{% extends "reviewapp/_base.html" %}
+
+{% block content %}
+
+    <table class="tableY">
+        <tr><td>ID</td><td>{{ topic.id }}</td></tr>
+        <tr><td>ID name</td><td>{{ topic.name }}</td></tr>
+        <tr><td>Sentiment</td><td>{{ topic.sentiment }}</td></tr>
+        <tr><td>Words</td><td>{{ topic.words }}</td></tr>
+    </table>
+
+{% endblock %}

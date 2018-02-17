@@ -1,12 +1,46 @@
-{% extends "reviewapp/base.html" %}
+{% extends "reviewapp/_base.html" %}
 
 {% block content %}
 
-    <table class="tableY">
-        <tr><td>ID</td><td>{{ product.id }}</td></tr>
-        <tr><td>Nº reviews</td><td>{{ product.num_rating }}</td></tr>
-        <tr><td>Average score</td><td>{{ product.av_score }}</td></tr>
-        <tr><td>Variance score</td><td>{{ product.var_score }}</td></tr>
-    </table>
+<table class="tableY">
+    <tr><td>ID</td><td>{{ product.id }}</td></tr>
+    <tr><td>Nº reviews</td><td>{{ product.num_rating }}</td></tr>
+    <tr><td>Average score</td><td>{{ product.av_score }}</td></tr>
+    <tr><td>Variance score</td><td>{{ product.var_score }}</td></tr>
+    <tr><td>Words</td>
+        <td>
+            {% for word in product.word_list %}
+            <label class="gray">{{ word }}</label>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+
+{% if product_topic_distribution %}
+
+<div id="chart"></div>
+
+<!--<table class="tableY">-->
+    <!--{% for topic in topic_ids %}-->
+    <!--<tr>-->
+        <!--<td>{{ topic.0 }}</td>-->
+        <!--<td>{{ topic.1 }}</td>-->
+        <!--<td>{{ topic.2 }}</td>-->
+    <!--</tr>-->
+    <!--{% endfor %}-->
+<!--</table>-->
+
+{% endif %}
+
+
+<script>
+    var chart = c3.generate({
+        data: {
+            columns: {{ product_topic_distribution|safe }},
+            type: 'donut'
+        }
+    });
+</script>
+
 
 {% endblock %}

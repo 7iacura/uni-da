@@ -1,12 +1,70 @@
-{% extends "reviewapp/base.html" %}
+{% extends "reviewapp/_base.html" %}
 
 {% block content %}
 
-    <table class="tableY">
-        <tr><td>ID</td><td>{{ user.id }}</td></tr>
-        <tr><td>Nº reviews</td><td>{{ user.num_rating }}</td></tr>
-        <tr><td>Average score</td><td>{{ user.av_score }}</td></tr>
-        <tr><td>Variance score</td><td>{{ user.var_score }}</td></tr>
-    </table>
+<table class="tableY">
+    <tr><td>ID</td><td>{{ user.id }}</td></tr>
+    <tr><td>Nº reviews</td><td>{{ user.num_rating }}</td></tr>
+    <tr><td>Products</td><td>
+        {% for product in user.products %}
+        <a href="{% url 'product' product.0 %}"><label class="gray pointer">{{ product.0 }}</label></a>
+        {% endfor %}
+    </td></tr>
+    <tr><td>Average score</td><td>{{ user.av_score }}</td></tr>
+    <tr><td>Variance score</td><td>{{ user.var_score }}</td></tr>
+    <tr><td>Positive words</td>
+        <td>
+            {% for word in user.pos_words %}
+            <label class="green">{{ word }}</label>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr><td>Negative words</td>
+        <td>
+            {% for word in user.neg_words %}
+            <label class="red">{{ word }}</label>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+
+{% if user_topic_distribution %}
+
+<div id="chart"></div>
+
+<table class="tableY Y2 topics">
+    {% for topic in topic_ids %}
+    <tr>
+        <td class="checkbox"></td>
+        <td>{{ topic.0 }}</td>
+        <td><label>{{ topic.1 }}</label></td>
+        <td>
+            {% for word in topic.2 %}
+            <label class="gray">{{ word }}</label>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+
+<script>
+    var chart = c3.generate({
+        data: {
+            columns: {{ user_topic_distribution|safe }},
+            type: 'spline'
+        },
+        color: {
+            pattern: ['#FF0000', '#008000', '#870808', '#1A3A1A', '#EF7B07', '#5EF25E', '#C64013', '#BFEF2D', '#EFBF2D', '#2FD4E0']
+        }
+    });
+    chart.ygrids.add(
+      {value: 0, text: 'Label 0'}
+    );
+
+
+</script>
 
 {% endblock %}

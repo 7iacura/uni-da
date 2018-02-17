@@ -1,213 +1,43 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
 from django.template import loader
 from django.core.paginator import Paginator
 from django.db.models import Count
 
-from db_manager import set_database_path, initialize_util, initialize_dataset, import_dataset
+from db_manager import *
+from sentiment import *
+from JST import *
 
-from .models import Util, User, Product, Rating
+from .models import *
 
-from chartit import DataPool, Chart
-
-
-RESET_DB_ON_RUNSERVER = True
 
 set_database_path('reviewapp.db')
-
-if RESET_DB_ON_RUNSERVER:
-	initialize_util()
-	initialize_dataset()
 
 
 def index(request):
 
+	first_run = request.session.get('first_run', True)
+
+	if first_run:
+		print('--> first_run <--')
+		request.session.flush()
+		initialize_util()
+		initialize_dataset()
+
 	if Util.objects.filter(type='dataset').exists():
 		# get dataset info
 		dt = Util.objects.get(type="dataset")
-		# get user list
-		user_list = User.objects.all()[:25]
-		# get product list
-		product_list = Product.objects.all()[:25]
-
-		# get user rating distribution info
-		user_rating_distribution = User.objects.values('num_rating').annotate(Count('num_rating'))
-		user_rating_data = DataPool(
-			series=[{
-				'options': {
-					'source': user_rating_distribution
-				},
-				'terms': [
-					'num_rating',
-					{'nº users': 'num_rating__count'},
-				]
-			}]
-		)
-		user_rating_chart = Chart(
-			datasource=user_rating_data,
-			series_options=[{
-				'options': {
-					'type': 'line',
-					'stacking': False
-				},
-				'terms': {
-					'num_rating': [
-						'nº users',
-					]
-				}
-			}],
-			chart_options={
-				'title': {
-					'text': 'Review number per user'
-				},
-				'xAxis': {
-					'title': {
-						'text': 'nº reviews'
-					}
-				},
-				'yAxis': {
-					'title': {
-						'text': 'nº users'
-					}
-				}
-			},
-		)
-
-		# get user score distribution info
-		user_score_distribution = User.objects.values('av_score').annotate(Count('av_score'))
-		user_score_data = DataPool(
-			series=[{
-				'options': {
-					'source': user_score_distribution
-				},
-				'terms': [
-					'av_score',
-					{'nº users': 'av_score__count'},
-				]
-			}]
-		)
-		user_score_chart = Chart(
-			datasource=user_score_data,
-			series_options=[{
-				'options': {
-					'type': 'line',
-					'stacking': False
-				},
-				'terms': {
-					'av_score': [
-						'nº users',
-					]
-				}
-			}],
-			chart_options={
-				'title': {
-					'text': 'Average score review per user'
-				},
-				'xAxis': {
-					'title': {
-						'text': 'score'
-					}
-				},
-				'yAxis': {
-					'title': {
-						'text': 'nº users'
-					}
-				}
-			},
-		)
-
-		# get product rating distribution info
-		product_rating_distribution = Product.objects.values('num_rating').annotate(Count('num_rating'))
-		product_rating_data = DataPool(
-			series=[{
-				'options': {
-					'source': product_rating_distribution
-				},
-				'terms': [
-					'num_rating',
-					{'nº products': 'num_rating__count'},
-				]
-			}]
-		)
-		product_rating_chart = Chart(
-			datasource=product_rating_data,
-			series_options=[{
-				'options': {
-					'type': 'line',
-					'stacking': False
-				},
-				'terms': {
-					'num_rating': [
-						'nº products',
-					]
-				}
-			}],
-			chart_options={
-				'title': {
-					'text': 'Review number per product'
-				},
-				'xAxis': {
-					'title': {
-						'text': 'nº reviews'
-					}
-				},
-				'yAxis': {
-					'title': {
-						'text': 'nº products'
-					}
-				}
-			},
-		)
-
-		# get product score distribution info
-		product_score_distribution = Product.objects.values('av_score').annotate(Count('av_score'))
-		product_score_data = DataPool(
-			series=[{
-				'options': {
-					'source': product_score_distribution
-				},
-				'terms': [
-					'av_score',
-					{'nº products': 'av_score__count'},
-				]
-			}]
-		)
-		product_score_chart = Chart(
-			datasource=product_score_data,
-			series_options=[{
-				'options': {
-					'type': 'line',
-					'stacking': False
-				},
-				'terms': {
-					'av_score': [
-						'nº products',
-					]
-				}
-			}],
-			chart_options={
-				'title': {
-					'text': 'Average score review per product'
-				},
-				'xAxis': {
-					'title': {
-						'text': 'score'
-					}
-				},
-				'yAxis': {
-					'title': {
-						'text': 'nº products'
-					}
-				}
-			},
-		)
+		# get number of users, products, reviews
+		n_users = User.objects.count()
+		n_products = Product.objects.count()
+		n_reviews = Rating.objects.count()
 
 		context = {
 			'dataset': dt.name,
-			'user_list': user_list,
-			'product_list': product_list,
-			'chart_list': [user_rating_chart, user_score_chart, product_rating_chart, product_score_chart],
+			'users': n_users,
+			'products': n_products,
+			'reviews': n_reviews,
 		}
 
 	else:
@@ -216,52 +46,222 @@ def index(request):
 	return render(request, 'reviewapp/index.html', context)
 
 
-def importdataset(request):
+def loading(request):
+	context = { }
+	return render(request, 'reviewapp/_loading.html', context)
 
-	if request.method == 'POST' and request.FILES['file']:
+
+def loading_dataset(request):
+	context = { }
+	return render(request, 'reviewapp/_loading.html', context)
+
+
+def dataset(request):
+
+	# import dataset
+	if (request.method == 'POST'
+			and request.FILES['file']):
+
 		# save file
 		file = request.FILES['file']
 		fs = FileSystemStorage()
 		dataset_name = fs.save(file.name, file)
 
 		# import dataset from file
-		import_dataset(dataset_name)
+		ext = dataset_name.split('.')[-1]
+		if ext == 'tsv' or ext == 'csv':
+			import_dataset(dataset_name)
+		elif ext == 'json':
+			import_json(dataset_name)
 		fs.delete(file.name)
 
 		dt = Util(type='dataset', name=file.name)
 		dt.save()
 
+		# # get number of users, products, reviews
+		# n_users = User.objects.count()
+		# n_products = Product.objects.count()
+		# n_reviews = Rating.objects.count()
+		#
+		# context = {
+		# 	'dataset': file.name,
+		# 	'users': n_users,
+		# 	'products': n_products,
+		# 	'reviews': n_reviews,
+		# }
+
 		context = {
 			'dataset': file.name,
 		}
-		return render(request, 'reviewapp/import-dataset.html', context)
+		return render(request, 'reviewapp/dataset.html', context)
 
 	else:
 		if Util.objects.filter(type='dataset').exists():
 			# get dataset info
 			dt = Util.objects.get(type="dataset")
+			# get number of users, products, reviews
+			n_users = User.objects.count()
+			n_products = Product.objects.count()
+			n_reviews = Rating.objects.count()
+
 			context = {
 				'dataset': dt.name,
+				'users': n_users,
+				'products': n_products,
+				'reviews': n_reviews,
 			}
+
 		else:
 			context = { }
-		return render(request, 'reviewapp/import-dataset.html', context)
+		return render(request, 'reviewapp/dataset.html', context)
+
+def dataset_remove(request):
+
+		if Util.objects.filter(type='dataset').exists():
+			# get dataset info
+			dt = Util.objects.get(type="dataset")
+
+		# initialize dataset
+			initialize_dataset()
+			initialize_util()
+
+		else:
+			context = { }
+
+		return redirect('dataset')
 
 
-def getObjectLists(request, object_list, path_page):
+def dashboard(request):
+
+	builted_model = request.session.get('builted_model', False)
+
+	if not builted_model:
+		checked_users = request.session.get('checked_users', [])
+
+		if len(checked_users) != 0:
+
+			words = request.session.get('words', 10)
+			topics = request.session.get('topics', 5)
+			iterations = request.session.get('iterations', 20)
+
+			buildJstModel(checked_users, int(words), int(topics), int(iterations))
+			builted_model = True
+			request.session['builted_model'] = builted_model
+
+			context = {
+				'builted_model': builted_model,
+				'checked_users': checked_users,
+				'words': words,
+				'topics': topics,
+				'iterations': iterations,
+			}
+
+		else:
+			context = { }
+
+	else:
+
+		if request.method == 'POST':
+			request.session.flush()
+			builted_model = False
+			request.session['builted_model'] = builted_model
+
+			execute_statement('DELETE FROM topic')
+
+		checked_users = request.session.get('checked_users', None)
+		words = request.session.get('words', None)
+		topics = request.session.get('topics', None)
+		iterations = request.session.get('iterations', None)
+
+		context = {
+			'builted_model': builted_model,
+			'checked_users': checked_users,
+			'words': words,
+			'topics': topics,
+			'iterations': iterations,
+		}
+
+	return render(request, 'reviewapp/dashboard.html', context)
+
+
+def getObjectLists(request, object_list, path_page, more_context=[]):
 	template = loader.get_template(path_page)
-	paginator = Paginator(object_list, 25)
+	paginator = Paginator(object_list, 500)
 	page = request.GET.get('page')
 	object_in_page = paginator.get_page(page)
 	context = {
 		'objects': object_in_page,
 	}
+	for c in more_context:
+		context[c['key']] = c['value']
+
 	return HttpResponse(template.render(context, request))
 
 
 def users(request):
-	object_list = User.objects.all()
-	return getObjectLists(request, object_list, 'reviewapp/users.html')
+	builted_model = request.session.get('builted_model', False)
+
+	if not builted_model:
+
+		if (request.method == 'POST'
+				and request.POST.getlist('checked_users[]')):
+
+			request.session['checked_users'] = request.POST.getlist('checked_users[]')
+			request.session['words'] = request.POST.get('words')
+			request.session['topics'] = request.POST.get('topics')
+			request.session['iterations'] = request.POST.get('iterations')
+
+			return redirect('dashboard')
+
+		else:
+			object_list = User.objects.all()
+
+			return getObjectLists(request, object_list, 'reviewapp/users.html')
+
+	else:
+		checked_users = request.session.get('checked_users', [])
+
+		object_list = User.objects.all().filter(id__in=checked_users)
+		more_context = [
+			{'key': 'builted_model', 'value': True}
+		]
+
+		return getObjectLists(request, object_list, 'reviewapp/users.html', more_context)
+
+
+def user(request, user_id):
+	# getUserDistribution
+	user_topic_distribution = getUserDistribution(user_id)
+	user = get_object_or_404(User, pk=user_id)
+
+	pos_words = user.pos_words
+	if pos_words:
+		n_pos_words = []
+		for word in user.pos_words.split(","):
+			n_pos_words.append(word)
+		user.pos_words = n_pos_words
+
+	neg_words = user.neg_words
+	if neg_words:
+		n_neg_words = []
+		for word in user.neg_words.split(","):
+			n_neg_words.append(word)
+		user.neg_words = n_neg_words
+
+	user.products = execute_select('SELECT DISTINCT(productid) FROM rating WHERE userid = "' + user_id + '"')
+
+	for top in user_topic_distribution[0]:
+		topic_words = []
+		for word in top[2].split(","):
+			topic_words.append(word)
+		top[2] = topic_words
+
+	context = {
+		'user': user,
+		'user_topic_distribution': user_topic_distribution[1],
+		'topic_ids': user_topic_distribution[0]
+	}
+	return render(request, 'reviewapp/user.html', context)
 
 
 def products(request):
@@ -269,23 +269,42 @@ def products(request):
 	return getObjectLists(request, object_list, 'reviewapp/products.html')
 
 
+def product(request, product_id):
+	# getProductDistribution
+	product_topic_distribution = getProductDistribution(product_id)
+
+	product = get_object_or_404(Product, pk=product_id)
+
+	word_list = []
+	for word in product.words.split(","):
+		word_list.append(word)
+
+	product.word_list = word_list
+
+	context = {
+		'product': product,
+		'product_topic_distribution': product_topic_distribution,
+	}
+	return render(request, 'reviewapp/product.html', context)
+
+
 def ratings(request):
 	object_list = Rating.objects.all()
 	return getObjectLists(request, object_list, 'reviewapp/ratings.html')
 
 
-def user(request, user_id):
-	user = get_object_or_404(User, pk=user_id)
-	return render(request, 'reviewapp/user.html', {'user': user})
-
-
-def product(request, product_id):
-	product = get_object_or_404(Product, pk=product_id)
-	return render(request, 'reviewapp/product.html', {'product': product})
-
-
 def rating(request, rating_id):
 	review = get_object_or_404(Rating, pk=rating_id)
 	return render(request, 'reviewapp/rating.html', {'review': review})
+
+
+def topics(request):
+	object_list = Topic.objects.all()
+	return getObjectLists(request, object_list, 'reviewapp/topics.html')
+
+
+def topic(request, rating_id):
+	topic = get_object_or_404(Topic, pk=topic_id)
+	return render(request, 'reviewapp/topic.html', {'topic': topic})
 
 

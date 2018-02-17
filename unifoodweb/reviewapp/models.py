@@ -19,6 +19,7 @@ class Product(models.Model):
 	num_rating = models.IntegerField(blank=True, null=True)
 	av_score = models.FloatField(blank=True, null=True)
 	var_score = models.FloatField(blank=True, null=True)
+	words = models.FloatField(blank=True, null=True)
 
 	def __str__(self):
 		return self.id
@@ -48,6 +49,10 @@ class User(models.Model):
 	num_rating = models.IntegerField(blank=True, null=True)
 	av_score = models.FloatField(blank=True, null=True)
 	var_score = models.FloatField(blank=True, null=True)
+	experience = models.FloatField(blank=True, null=True)
+	experience_level = models.FloatField(blank=True, null=True)
+	pos_words = models.FloatField(blank=True, null=True)
+	neg_words = models.FloatField(blank=True, null=True)
 
 	def __str__(self):
 		return self.id
@@ -55,3 +60,17 @@ class User(models.Model):
 	class Meta:
 		managed = False
 		db_table = 'user'
+
+
+class Topic(models.Model):
+	id = models.IntegerField(primary_key=True)
+	name = models.TextField(blank=True, null=True)
+	sentiment = models.TextField(blank=True, null=True)
+	words = models.FloatField(blank=True, null=True)
+
+	def __str__(self):
+		return self.id
+
+	class Meta:
+		managed = False
+		db_table = 'topic'

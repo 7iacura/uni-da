@@ -1,4 +1,4 @@
-{% extends "reviewapp/base.html" %}
+{% extends "reviewapp/_base.html" %}
 
 {% block content %}
 
@@ -22,7 +22,7 @@
             {% endfor %}
         </table>
 
-        {% include "reviewapp/paginator.html" %}
+        {% include "reviewapp/_paginator.html" %}
 
     {% else %}
         <p>No products found.</p>

@@ -1,0 +1,46 @@
+{% extends "reviewapp/_base.html" %}
+
+{% block content %}
+
+<div class="block">
+
+    <p class="title">Dataset</p>
+
+    {% if dataset %}
+
+    <p>Dataset from file <b>{{ dataset }}</b></p>
+    <br>
+    <a href="/reviewapp/dataset-remove">
+        <button>Remove dataset</button>
+    </a>
+    <br>
+    <br>
+    <p>Users: <b>{{ users }}</b></p>
+    <p>Products: <b>{{ products }}</b></p>
+    <p>Reviews: <b>{{ reviews }}</b></p>
+
+    {% endif %}
+
+    {% if not dataset %}
+
+    <p>Import dataset</p>
+    <br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file" id="file" class="input-file" />
+        <label for="file" type="submit">Choose a file</label>
+        <span></span>
+        <br><br>
+        <button type="submit" id="import" disabled>Import dataset</button>
+    </form>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+{% block jsexec %}
+<script type="text/javascript" src="/static/reviewapp/input-file.js" />
+<script type="text/javascript"></script>
+{% endblock %}

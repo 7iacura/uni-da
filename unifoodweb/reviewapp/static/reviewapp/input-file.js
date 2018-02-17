@@ -1,5 +1,7 @@
 
 var inputs = document.querySelectorAll('.input-file');
+var importButton = document.getElementById('import');
+
 Array.prototype.forEach.call(inputs, function(input)
 {
     var label = input.nextElementSibling;
@@ -19,9 +21,9 @@ Array.prototype.forEach.call(inputs, function(input)
 
 		if(fileName) {
 			span.innerHTML = fileName;
-			var importButton = document.getElementById('import-dataset');
 			importButton.disabled = false;
         }
 
 	});
 });
+

@@ -1,29 +1,72 @@
-{% extends "reviewapp/base.html" %}
+{% extends "reviewapp/_base.html" %}
 
 {% block content %}
 
     {% if objects %}
-        <table class="tableX">
-            <tr>
-                <th>ID</th>
-                <th>nº reviews</th>
-                <th>Average score</th>
-                <th>Variance score</th>
-            </tr>
-            {% for user in objects %}
-            <tr>
-                <td><a href="{% url 'user' user.id %}">{{ user.id }}</a></td>
-                <td>{{ user.num_rating }}</td>
-                <td>{{ user.av_score|floatformat:3 }}</td>
-                <td>{{ user.var_score|floatformat:3 }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <form method="POST">
+        {% csrf_token %}
 
-        {% include "reviewapp/paginator.html" %}
+            {% if not builted_model %}
+            <table>
+                <tr>
+                    <td>
+                        <p>Nº words</p>
+                        <input id="words" name="words" type="number" min="5" max="1000" value="10">
+                    </td>
+                    <td>
+                        <p>Nº topics</p>
+                        <input id="topics" name="topics" type="number" min="1" max="100" value="5">
+                    </td>
+                    <td>
+                        <p>Nº iterations</p>
+                        <select name="iterations">
+                            <option value="10">10</option>
+                            <option value="20" selected="selected">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="block2 no-border no-shadow float-right">
+                            <button type="submit" id="make-model">Make model from selected users</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            {% endif %}
+
+            <table class="tableX">
+                <tr>
+                    <th class="checkbox"></th>
+                    <th>ID</th>
+                    <th>nº reviews</th>
+                    <th>Average score</th>
+                    <th>Variance score</th>
+                </tr>
+                {% for user in objects %}
+                <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" class="pointer"
+                               name="checked_users[]" value="{{ user.id }}">
+                    </td>
+                    <td><a href="{% url 'user' user.id %}">{{ user.id }}</a></td>
+                    <td>{{ user.num_rating }}</td>
+                    <td>{{ user.av_score|floatformat:3 }}</td>
+                    <td>{{ user.var_score|floatformat:3 }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+
+        {% include "reviewapp/_paginator.html" %}
 
     {% else %}
         <p>No users found.</p>
     {% endif %}
+
+<script>
+
+</script>
 
 {% endblock %}
