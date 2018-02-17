@@ -510,11 +510,6 @@ table.tableY.Y2 td:nth-child(2) {
 /*
 ['#FF0000', '#008000', '#870808', '#1A3A1A', '#EF7B07', '#5EF25E', '#C64013', '#BFEF2D', '#EFBF2D', '#2FD4E0']
 */
-/*
-table.tableY.topics tr td:first-child {
-    color: #FFFFFF;
-}
-*/
 table.tableY.Y2.topics tr:nth-child(1) td:nth-child(1) { background-color: #FF0000; }
 table.tableY.Y2.topics tr:nth-child(2) td:nth-child(1) { background-color: #008000; }
 table.tableY.Y2.topics tr:nth-child(3) td:nth-child(1) { background-color: #870808; }
@@ -526,8 +521,8 @@ table.tableY.Y2.topics tr:nth-child(8) td:nth-child(1) { background-color: #BFEF
 table.tableY.Y2.topics tr:nth-child(9) td:nth-child(1) { background-color: #EFBF2D; }
 table.tableY.Y2.topics tr:nth-child(10) td:nth-child(1) { background-color: #2FD4E0; }
 
-table.tableY.topics tr:nth-child(even) td:nth-child(3) label { background-color: #FF0000; }
-table.tableY.topics tr:nth-child(odd) td:nth-child(3) label { background-color: #008000; }
+table.tableY.topics tr:nth-child(even) td:nth-child(3) label { background-color: #008000; }
+table.tableY.topics tr:nth-child(odd) td:nth-child(3) label { background-color: #FF0000; }
 
 #chart {
     margin: 50px auto;
