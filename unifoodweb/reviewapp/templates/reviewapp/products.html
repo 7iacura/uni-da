@@ -6,10 +6,26 @@
     {% if objects %}
         <table class="tableX">
             <tr>
-                <th>ID</th>
-                <th>nº reviews</th>
-                <th>Average score</th>
-                <th>Variance score</th>
+                <th>
+                    ID
+                    <a href="?order_by=id&direction=asc">&#8673;</a>
+                    <a href="?order_by=id&direction=desc">&#8675;</a>
+                </th>
+                <th>
+                    Nº reviews
+                    <a href="?order_by=num_rating&direction=asc">&#8673;</a>
+                    <a href="?order_by=num_rating&direction=desc">&#8675;</a>
+                </th>
+                <th>
+                    Average score
+                    <a href="?order_by=av_score&direction=asc">&#8673;</a>
+                    <a href="?order_by=av_score&direction=desc">&#8675;</a>
+                </th>
+                <th>
+                    Variance score
+                    <a href="?order_by=var_score&direction=asc">&#8673;</a>
+                    <a href="?order_by=var_score&direction=desc">&#8675;</a>
+                </th>
             </tr>
             {% for product in objects %}
             <a href="">

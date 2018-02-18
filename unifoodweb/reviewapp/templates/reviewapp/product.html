@@ -18,6 +18,18 @@
     </table>
 </div>
 
+{% if review_pie_data %}
+
+<div class="block">
+
+    <p class="title">Review score distribution</p>
+
+    <div id="chartReviews" class="chart"></div>
+
+</div>
+
+{% endif %}
+
 {% if chart_data %}
 
 <div class="table-chart block">
@@ -63,6 +75,17 @@
 {% endif %}
 
 <script>
+
+    var chartReviews = c3.generate({
+        bindto: '#chartReviews',
+        data: {
+            columns: {{ review_pie_data|safe }},
+            type: 'pie'
+        },
+        color: {
+            pattern: ['#E65C00', '#EA7A08', '#EF9811', '#F4B61A', '#F9D423']
+        }
+    });
 
     var pattern = [];
     var patternPos = ['#38EF7D', '#23C546', '#0F9B0F', '#0B7B29', '#085B44', '#064B51', '#053B5E', '#032B6B', '#021B79'];

@@ -199,6 +199,14 @@ def getObjectLists(request, object_list, path_page, more_context=[]):
 def users(request):
 	builted_model = request.session.get('builted_model', False)
 
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
 	if not builted_model:
 
 		if (request.method == 'POST'
@@ -212,14 +220,21 @@ def users(request):
 			return redirect('dashboard')
 
 		else:
-			object_list = User.objects.all()
+			if ordering:
+				object_list = User.objects.all().order_by(ordering)
+			else:
+				object_list = User.objects.all()
 
 			return getObjectLists(request, object_list, 'reviewapp/users.html')
 
 	else:
 		checked_users = request.session.get('checked_users', [])
 
-		object_list = User.objects.all().filter(id__in=checked_users)
+		if ordering:
+			object_list = User.objects.all().filter(id__in=checked_users).order_by(ordering)
+		else:
+			object_list = User.objects.all().filter(id__in=checked_users)
+
 		more_context = [
 			{'key': 'builted_model', 'value': True}
 		]
@@ -228,6 +243,19 @@ def users(request):
 
 
 def user(request, user_id):
+
+	# getUserDistribution
+	user_topic_distribution = getUserDistribution(user_id)
+	user_topic_distribution_pos = user_topic_distribution[0]
+	user_topic_distribution_neg = user_topic_distribution[1]
+
+	topic_pos_chart = []
+	for tpc in user_topic_distribution_pos:
+		topic_pos_chart.append(tpc[1])
+
+	topic_neg_chart = []
+	for tpc in user_topic_distribution_neg:
+		topic_neg_chart.append(tpc[1])
 
 	user = get_object_or_404(User, pk=user_id)
 
@@ -247,18 +275,12 @@ def user(request, user_id):
 
 	user.products = execute_select('SELECT DISTINCT(productid) FROM rating WHERE userid = "' + user_id + '"')
 
-	# getUserDistribution
-	user_topic_distribution = getUserDistribution(user_id)
-	user_topic_distribution_pos = user_topic_distribution[0]
-	user_topic_distribution_neg = user_topic_distribution[1]
-
-	topic_pos_chart = []
-	for tpc in user_topic_distribution_pos:
-		topic_pos_chart.append(tpc[1])
-
-	topic_neg_chart = []
-	for tpc in user_topic_distribution_neg:
-		topic_neg_chart.append(tpc[1])
+	review_pie_data = [[5, 0], [4, 0], [3, 0], [2, 0], [1, 0]]
+	review_pie_data_raw = execute_select('SELECT score FROM rating WHERE userid = "' + user_id + '"')
+	for r in review_pie_data_raw:
+		for v in review_pie_data:
+			if r[0] == v[0]:
+				v[1] += 1
 
 	context = {
 		'user': user,
@@ -266,12 +288,26 @@ def user(request, user_id):
 		'topic_pos_chart': topic_pos_chart,
 		'topic_neg': user_topic_distribution_neg,
 		'topic_neg_chart': topic_neg_chart,
+		'review_pie_data': review_pie_data,
 	}
 	return render(request, 'reviewapp/user.html', context)
 
 
 def products(request):
-	object_list = Product.objects.all()
+
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
+	if ordering:
+		object_list = Product.objects.all().order_by(ordering)
+	else:
+		object_list = Product.objects.all()
+
 	return getObjectLists(request, object_list, 'reviewapp/products.html')
 
 
@@ -290,17 +326,38 @@ def product(request, product_id):
 
 	product.word_list = word_list
 
+	review_pie_data = [[5, 0], [4, 0], [3, 0], [2, 0], [1, 0]]
+	review_pie_data_raw = execute_select('SELECT score FROM rating WHERE productid = "' + product_id + '"')
+	for r in review_pie_data_raw:
+		for v in review_pie_data:
+			if r[0] == v[0]:
+				v[1] += 1
+
 	context = {
 		'product': product,
 		'chart_data': product_topic_distribution_chart,
 		'topic_pos': product_topic_distribution_pos,
 		'topic_neg': product_topic_distribution_neg,
+		'review_pie_data': review_pie_data,
 	}
 	return render(request, 'reviewapp/product.html', context)
 
 
 def ratings(request):
-	object_list = Rating.objects.all()
+
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
+	if ordering:
+		object_list = Rating.objects.all().order_by(ordering)
+	else:
+		object_list = Rating.objects.all()
+
 	return getObjectLists(request, object_list, 'reviewapp/ratings.html')
 
 
@@ -310,10 +367,22 @@ def rating(request, rating_id):
 
 
 def topics(request):
-	# object_list = Topic.objects.all()
+
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
+	if ordering:
+		object_list_s = Topic.objects.all().order_by(ordering)
+	else:
+		object_list_s = Topic.objects.all()
 
 	object_list = []
-	for tpc in Topic.objects.all():
+	for tpc in object_list_s:
 		topic_words = []
 		for word in tpc.words.split(","):
 			topic_words.append(word)

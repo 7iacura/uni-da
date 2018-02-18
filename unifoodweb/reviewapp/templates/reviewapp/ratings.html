@@ -5,21 +5,35 @@
     {% if objects %}
         <table class="tableX">
             <tr>
-                <th>ID</th>
-                <th>ID product</th>
-                <th>ID user</th>
-                <th>Score</th>
+                <th>
+                    ID
+                    <a href="?order_by=id&direction=asc">&#8673;</a>
+                    <a href="?order_by=id&direction=desc">&#8675;</a>
+                </th>
+                <th>
+                    ID product
+                    <a href="?order_by=productid&direction=asc">&#8673;</a>
+                    <a href="?order_by=productid&direction=desc">&#8675;</a>
+                </th>
+                <th>
+                    ID user
+                    <a href="?order_by=userid&direction=asc">&#8673;</a>
+                    <a href="?order_by=userid&direction=desc">&#8675;</a>
+                </th>
+                <th>
+                    Score
+                    <a href="?order_by=score&direction=asc">&#8673;</a>
+                    <a href="?order_by=score&direction=desc">&#8675;</a>
+                </th>
                 <th style="width: 50%;">Text</th>
             </tr>
             {% for review in objects %}
             <a href="">
                 <tr>
                     <td><a href="{% url 'rating' review.id %}">{{ review.id }}</a></td>
-                    <!--<td>{{ review.productid }}</td>-->
                     <td><a href="{% url 'product' review.productid %}">
                         <label class="blue pointer">{{ review.productid }}</label>
                     </a></td>
-                    <!--<td>{{ review.userid }}</td>-->
                     <td><a href="{% url 'user' review.userid %}">
                         <label class="orange pointer">{{ review.userid }}</label>
                     </a></td>
