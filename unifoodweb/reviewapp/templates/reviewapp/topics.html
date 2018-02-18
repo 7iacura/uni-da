@@ -6,14 +6,22 @@
 
         <table class="tableX">
             <tr>
-                <th class="checkbox">ID</th>
+                <th class="small">
+                    ID
+                    <a href="?order_by=id&direction=asc">&#8673;</a>
+                    <a href="?order_by=id&direction=desc">&#8675;</a>
+                </th>
                 <!--<th>ID name</th>-->
-                <th>Sentiment</th>
+                <th>
+                    Sentiment
+                    <a href="?order_by=sentiment&direction=asc">&#8673;</a>
+                    <a href="?order_by=sentiment&direction=desc">&#8675;</a>
+                </th>
                 <th>Words</th>
             </tr>
             {% for topic in objects %}
             <tr>
-                <td class="checkbox"><a href="{% url 'topic' topic.id %}">{{ topic.id }}</a></td>
+                <td class="small"><a href="{% url 'topic' topic.id %}">{{ topic.id }}</a></td>
                 <!--<td>{{ topic.name }}</td>-->
                 <td>
                     {% if topic.sentiment == 1 %}

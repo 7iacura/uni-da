@@ -199,6 +199,14 @@ def getObjectLists(request, object_list, path_page, more_context=[]):
 def users(request):
 	builted_model = request.session.get('builted_model', False)
 
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
 	if not builted_model:
 
 		if (request.method == 'POST'
@@ -212,14 +220,21 @@ def users(request):
 			return redirect('dashboard')
 
 		else:
-			object_list = User.objects.all()
+			if ordering:
+				object_list = User.objects.all().order_by(ordering)
+			else:
+				object_list = User.objects.all()
 
 			return getObjectLists(request, object_list, 'reviewapp/users.html')
 
 	else:
 		checked_users = request.session.get('checked_users', [])
 
-		object_list = User.objects.all().filter(id__in=checked_users)
+		if ordering:
+			object_list = User.objects.all().filter(id__in=checked_users).order_by(ordering)
+		else:
+			object_list = User.objects.all().filter(id__in=checked_users)
+
 		more_context = [
 			{'key': 'builted_model', 'value': True}
 		]
@@ -279,7 +294,20 @@ def user(request, user_id):
 
 
 def products(request):
-	object_list = Product.objects.all()
+
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
+	if ordering:
+		object_list = Product.objects.all().order_by(ordering)
+	else:
+		object_list = Product.objects.all()
+
 	return getObjectLists(request, object_list, 'reviewapp/products.html')
 
 
@@ -316,7 +344,20 @@ def product(request, product_id):
 
 
 def ratings(request):
-	object_list = Rating.objects.all()
+
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
+	if ordering:
+		object_list = Rating.objects.all().order_by(ordering)
+	else:
+		object_list = Rating.objects.all()
+
 	return getObjectLists(request, object_list, 'reviewapp/ratings.html')
 
 
@@ -326,10 +367,22 @@ def rating(request, rating_id):
 
 
 def topics(request):
-	# object_list = Topic.objects.all()
+
+	ordering = False
+	order_by = request.GET.get('order_by')
+	direction = request.GET.get('direction')
+	if order_by and direction:
+		ordering = order_by.lower()
+		if direction == 'desc':
+			ordering = '-{}'.format(ordering)
+
+	if ordering:
+		object_list_s = Topic.objects.all().order_by(ordering)
+	else:
+		object_list_s = Topic.objects.all()
 
 	object_list = []
-	for tpc in Topic.objects.all():
+	for tpc in object_list_s:
 		topic_words = []
 		for word in tpc.words.split(","):
 			topic_words.append(word)

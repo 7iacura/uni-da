@@ -485,6 +485,13 @@ table.tableY tr td.checkbox {
     width: 25px !important;
     max-width: 25px;
 }
+table tr th.small,
+table tr td.small,
+table tr th.small,
+table tr td.small {
+    width: 50px !important;
+    max-width: 50px;
+}
 table.tableX tbody tr td {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
