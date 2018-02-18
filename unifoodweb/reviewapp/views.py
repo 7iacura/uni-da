@@ -78,21 +78,18 @@ def dataset(request):
 		dt = Util(type='dataset', name=file.name)
 		dt.save()
 
-		# # get number of users, products, reviews
-		# n_users = User.objects.count()
-		# n_products = Product.objects.count()
-		# n_reviews = Rating.objects.count()
-		#
-		# context = {
-		# 	'dataset': file.name,
-		# 	'users': n_users,
-		# 	'products': n_products,
-		# 	'reviews': n_reviews,
-		# }
+		# get number of users, products, reviews
+		n_users = User.objects.count()
+		n_products = Product.objects.count()
+		n_reviews = Rating.objects.count()
 
 		context = {
 			'dataset': file.name,
+			'users': n_users,
+			'products': n_products,
+			'reviews': n_reviews,
 		}
+
 		return render(request, 'reviewapp/dataset.html', context)
 
 	else:
@@ -263,18 +260,8 @@ def user(request, user_id):
 	for tpc in user_topic_distribution_neg:
 		topic_neg_chart.append(tpc[1])
 
-	# for top in user_topic_distribution[0]:
-	# 	topic_words = []
-	# 	for word in top[2].split(","):
-	# 		topic_words.append(word)
-	# 	top[2] = topic_words
-
-	print('\n\n\n', topic_pos_chart, '\n\n\n')
-
 	context = {
 		'user': user,
-		# 'user_topic_distribution': user_topic_distribution[1],
-		# 'topic_ids': user_topic_distribution[0]
 		'topic_pos': user_topic_distribution_pos,
 		'topic_pos_chart': topic_pos_chart,
 		'topic_neg': user_topic_distribution_neg,
@@ -323,12 +310,30 @@ def rating(request, rating_id):
 
 
 def topics(request):
-	object_list = Topic.objects.all()
+	# object_list = Topic.objects.all()
+
+	object_list = []
+	for tpc in Topic.objects.all():
+		topic_words = []
+		for word in tpc.words.split(","):
+			topic_words.append(word)
+		tpc.word_list = topic_words
+		object_list.append(tpc)
+
 	return getObjectLists(request, object_list, 'reviewapp/topics.html')
 
 
-def topic(request, rating_id):
-	topic = get_object_or_404(Topic, pk=topic_id)
-	return render(request, 'reviewapp/topic.html', {'topic': topic})
+def topic(request, topic_id):
+	tpc = get_object_or_404(Topic, pk=topic_id)
+	word_list = []
+	for word in tpc.words.split(","):
+		word_list.append(word)
+
+	tpc.word_list = word_list
+
+	context = {
+		'topic': tpc,
+	}
+	return render(request, 'reviewapp/topic.html', context)
 
 

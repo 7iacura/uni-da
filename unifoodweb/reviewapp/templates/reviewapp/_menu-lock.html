@@ -1,13 +1,13 @@
 <ul>
-    {% if request.path == '/reviewapp/dashboard/' %} <li class="active">
-    {% else %}<li>
-    {% endif %}
-        Dashboard
-    </li>
     {% if request.path == '/reviewapp/dataset/' %} <li class="active">
     {% else %}<li>
     {% endif %}
         Dataset
+    </li>
+    {% if request.path == '/reviewapp/dashboard/' %} <li class="active">
+    {% else %}<li>
+    {% endif %}
+        Dashboard
     </li>
     {% if request.path == '/reviewapp/users/' %} <li class="active">
     {% else %}<li>

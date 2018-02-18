@@ -4,9 +4,25 @@
 
     <table class="tableY">
         <tr><td>ID</td><td>{{ topic.id }}</td></tr>
-        <tr><td>ID name</td><td>{{ topic.name }}</td></tr>
-        <tr><td>Sentiment</td><td>{{ topic.sentiment }}</td></tr>
-        <tr><td>Words</td><td>{{ topic.words }}</td></tr>
+        <!--<tr><td>ID name</td><td>{{ topic.name }}</td></tr>-->
+        <tr>
+            <td>Sentiment</td>
+            <td>
+                {% if topic.sentiment == 1 %}
+                <label class="green">Positive</label>
+                {% else %}
+                <label class="red">Negative</label>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Words</td>
+            <td>
+                {% for word in topic.word_list %}
+                <label class="gray">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
     </table>
 
 {% endblock %}

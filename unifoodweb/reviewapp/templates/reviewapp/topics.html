@@ -1,7 +1,7 @@
 {% extends "reviewapp/_base.html" %}
 
 {% block content %}
-
+<div class="block">
     {% if objects %}
 
         <table class="tableX">
@@ -13,10 +13,20 @@
             </tr>
             {% for topic in objects %}
             <tr>
-                <td class="checkbox"><a href="{% url 'user' user.id %}">{{ topic.id }}</a></td>
+                <td class="checkbox"><a href="{% url 'topic' topic.id %}">{{ topic.id }}</a></td>
                 <!--<td>{{ topic.name }}</td>-->
-                <td>{{ topic.sentiment }}</td>
-                <td>{{ topic.words }}</td>
+                <td>
+                    {% if topic.sentiment == 1 %}
+                    <label class="green">Positive</label>
+                    {% else %}
+                    <label class="red">Negative</label>
+                    {% endif %}
+                </td>
+                <td>
+                    {% for word in topic.word_list %}
+                    <label class="gray">{{ word }}</label>
+                    {% endfor %}
+                </td>
             </tr>
             {% endfor %}
         </table>
@@ -24,5 +34,5 @@
     {% else %}
         <p>No topics found.</p>
     {% endif %}
-
+</div>
 {% endblock %}

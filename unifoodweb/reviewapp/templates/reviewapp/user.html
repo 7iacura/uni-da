@@ -8,7 +8,7 @@
         <tr><td>Nº reviews</td><td>{{ user.num_rating }}</td></tr>
         <tr><td>Products</td><td>
             {% for product in user.products %}
-            <a href="{% url 'product' product.0 %}"><label class="gray pointer">{{ product.0 }}</label></a>
+            <a href="{% url 'product' product.0 %}"><label class="blue pointer">{{ product.0 }}</label></a>
             {% endfor %}
         </td></tr>
         <tr><td>Average score</td><td>{{ user.av_score }}</td></tr>

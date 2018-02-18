@@ -1,7 +1,7 @@
 {% extends "reviewapp/_base.html" %}
 
 {% block content %}
-
+<div class="block">
     {% if objects %}
         <table class="tableX">
             <tr>
@@ -14,10 +14,15 @@
             {% for review in objects %}
             <a href="">
                 <tr>
-                    <!--<td><a href="/reviewapp/rating/{{review.id}}/">{{ review.id }}</a></td>-->
                     <td><a href="{% url 'rating' review.id %}">{{ review.id }}</a></td>
-                    <td>{{ review.productid }}</td>
-                    <td>{{ review.userid }}</td>
+                    <!--<td>{{ review.productid }}</td>-->
+                    <td><a href="{% url 'product' review.productid %}">
+                        <label class="blue pointer">{{ review.productid }}</label>
+                    </a></td>
+                    <!--<td>{{ review.userid }}</td>-->
+                    <td><a href="{% url 'user' review.userid %}">
+                        <label class="orange pointer">{{ review.userid }}</label>
+                    </a></td>
                     <td>{{ review.score }}</td>
                     <td style="text-align: left;">{{ review.text }}</td>
                 </tr>
@@ -29,6 +34,6 @@
 
     {% else %}
         <p>No reviews found.</p>
-{% endif %}
-
+    {% endif %}
+</div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<div class="block">
     {% if objects %}
         <table class="tableX">
             <tr>
@@ -13,7 +14,9 @@
             {% for product in objects %}
             <a href="">
                 <tr>
-                    <td><a href="{% url 'product' product.id %}">{{ product.id }}</a></td>
+                    <td><a href="{% url 'product' product.id %}">
+                        <label class="blue pointer">{{ product.id }}</label>
+                    </a></td>
                     <td>{{ product.num_rating }}</td>
                     <td>{{ product.av_score|floatformat:3 }}</td>
                     <td>{{ product.var_score|floatformat:3 }}</td>
@@ -27,5 +30,6 @@
     {% else %}
         <p>No products found.</p>
     {% endif %}
+</div>
 
 {% endblock %}

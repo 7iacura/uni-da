@@ -11,7 +11,7 @@
     <p>Dataset from file <b>{{ dataset }}</b></p>
     <br>
     <a href="/reviewapp/dataset-remove">
-        <button>Remove dataset</button>
+        <button class="left">Remove dataset</button>
     </a>
     <br>
     <br>
@@ -25,13 +25,13 @@
 
     <p>Import dataset</p>
     <br>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" style="float: left;">
         {% csrf_token %}
         <input type="file" name="file" id="file" class="input-file" />
         <label for="file" type="submit">Choose a file</label>
         <span></span>
         <br><br>
-        <button type="submit" id="import" disabled>Import dataset</button>
+        <button type="submit" id="import" class="left" disabled>Import dataset</button>
     </form>
 
     {% endif %}

@@ -2,24 +2,25 @@
 
 {% block content %}
 
+<div class="block">
     {% if objects %}
         <form method="POST">
         {% csrf_token %}
 
             {% if not builted_model %}
-            <table>
+            <table style="margin-bottom: 15px;">
                 <tr>
                     <td>
                         <p>Nº words</p>
-                        <input id="words" name="words" type="number" min="5" max="1000" value="10">
+                        <input id="words" name="words" type="number" min="5" max="1000" value="10" class="r80">
                     </td>
                     <td>
                         <p>Nº topics</p>
-                        <input id="topics" name="topics" type="number" min="1" max="100" value="5">
+                        <input id="topics" name="topics" type="number" min="1" max="100" value="5" class="r80">
                     </td>
                     <td>
                         <p>Nº iterations</p>
-                        <select name="iterations">
+                        <select name="iterations" style="width: 100px;">
                             <option value="10">10</option>
                             <option value="20" selected="selected">20</option>
                             <option value="50">50</option>
@@ -36,10 +37,19 @@
             </table>
             {% endif %}
 
-            <table class="tableX">
+            <table id="sortTable" class="tableX">
                 <tr>
-                    <th class="checkbox"></th>
-                    <th>ID</th>
+                    <th class="checkbox">
+                        <div class="tooltip">
+                            <input type="checkbox" class="pointer" onClick='toggleAll(this)'>
+                            <span class="tooltiptext">Toggle all</span>
+                        </div>
+                        <div class="tooltip">
+                            <input type="checkbox" class="pointer" onClick='toggleTop15(this)'>
+                            <span class="tooltiptext">Toggle first 15</span>
+                        </div>
+                    </th>
+                    <th><a href="?order_by=id&direction=asc">ID</a></th>
                     <th>nº reviews</th>
                     <th>Average score</th>
                     <th>Variance score</th>
@@ -47,10 +57,12 @@
                 {% for user in objects %}
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" class="pointer"
+                        <input type="checkbox" class="inputCheckbox pointer"
                                name="checked_users[]" value="{{ user.id }}">
                     </td>
-                    <td><a href="{% url 'user' user.id %}">{{ user.id }}</a></td>
+                    <td><a href="{% url 'user' user.id %}">
+                        <label class="orange pointer">{{ user.id }}</label>
+                    </a></td>
                     <td>{{ user.num_rating }}</td>
                     <td>{{ user.av_score|floatformat:3 }}</td>
                     <td>{{ user.var_score|floatformat:3 }}</td>
@@ -64,9 +76,22 @@
     {% else %}
         <p>No users found.</p>
     {% endif %}
+</div>
 
 <script>
+    function toggleAll(source) {
+        var inputs = document.getElementsByClassName('inputCheckbox');
+        for (i = 0; i < inputs.length; i++) {
+            inputs[i].checked = source.checked;
+        }
+    };
 
+    function toggleTop15(source) {
+        var inputs = document.getElementsByClassName('inputCheckbox');
+        for (i = 0; i < 15; i++) {
+            inputs[i].checked = source.checked;
+        }
+    };
 </script>
 
 {% endblock %}

@@ -9,18 +9,20 @@
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <button type="submit" id="reset">Reset model</button>
+        <button type="submit" id="reset" class="left">Reset model</button>
     </form>
-
+    <br>
     <br>
     <table class="tableY">
         <tr><td>Nº words</td><td>{{ words }}</td></tr>
         <tr><td>Nº topics</td><td>{{ topics }}</td></tr>
         <tr><td>Nº iterations</td><td>{{ iterations }}</td></tr>
-        <tr><td>Users</td>
+        <tr><td>Selected users</td>
             <td>
                 {% for user in checked_users %}
-                <label class="orange">{{ user }}</label>
+                <a href="{% url 'user' user %}">
+                    <label class="orange pointer">{{ user }}</label>
+                </a>
                 {% endfor %}
             </td>
         </tr>
@@ -30,6 +32,7 @@
 {% else %}
 
 <p>No data to display.</p>
+<p>Select users to build model.</p>
 
 {% endif %}
 
