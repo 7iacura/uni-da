@@ -508,23 +508,37 @@ table.tableY.Y2 td:nth-child(2) {
 }
 
 /*
-['#FF0000', '#008000', '#870808', '#1A3A1A', '#EF7B07', '#5EF25E', '#C64013', '#BFEF2D', '#EFBF2D', '#2FD4E0']
+green gradient
+['#38EF7D', '#23C546', '#0F9B0F', '#0B7B29', '#085B44', '#064B51', '#053B5E', '#032B6B', '#021B79']
 */
-table.tableY.Y2.topics tr:nth-child(1) td:nth-child(1) { background-color: #FF0000; }
-table.tableY.Y2.topics tr:nth-child(2) td:nth-child(1) { background-color: #008000; }
-table.tableY.Y2.topics tr:nth-child(3) td:nth-child(1) { background-color: #870808; }
-table.tableY.Y2.topics tr:nth-child(4) td:nth-child(1) { background-color: #1A3A1A; }
-table.tableY.Y2.topics tr:nth-child(5) td:nth-child(1) { background-color: #EF7B07; }
-table.tableY.Y2.topics tr:nth-child(6) td:nth-child(1) { background-color: #5EF25E; }
-table.tableY.Y2.topics tr:nth-child(7) td:nth-child(1) { background-color: #C64013; }
-table.tableY.Y2.topics tr:nth-child(8) td:nth-child(1) { background-color: #BFEF2D; }
-table.tableY.Y2.topics tr:nth-child(9) td:nth-child(1) { background-color: #EFBF2D; }
-table.tableY.Y2.topics tr:nth-child(10) td:nth-child(1) { background-color: #2FD4E0; }
-
+table.tableY.Y2.topics.pos tr:nth-child(1) td:nth-child(1) { background-color: #38EF7D; }
+table.tableY.Y2.topics.pos tr:nth-child(2) td:nth-child(1) { background-color: #23C546; }
+table.tableY.Y2.topics.pos tr:nth-child(3) td:nth-child(1) { background-color: #0F9B0F; }
+table.tableY.Y2.topics.pos tr:nth-child(4) td:nth-child(1) { background-color: #0B7B29; }
+table.tableY.Y2.topics.pos tr:nth-child(5) td:nth-child(1) { background-color: #085B44; }
+table.tableY.Y2.topics.pos tr:nth-child(6) td:nth-child(1) { background-color: #064B51; }
+table.tableY.Y2.topics.pos tr:nth-child(7) td:nth-child(1) { background-color: #053B5E; }
+table.tableY.Y2.topics.pos tr:nth-child(8) td:nth-child(1) { background-color: #032B6B; }
+table.tableY.Y2.topics.pos tr:nth-child(9) td:nth-child(1) { background-color: #021B79; }
+/*
+red gradient
+['#C21500', '#C83200', '#CF4F00', '#D56C00', '#DC8A00', '#E3A700', '#E9C400', '#F0E100', '#F7FF00']
+*/
+table.tableY.Y2.topics.neg tr:nth-child(1) td:nth-child(1) { background-color: #C21500; }
+table.tableY.Y2.topics.neg tr:nth-child(2) td:nth-child(1) { background-color: #C83200; }
+table.tableY.Y2.topics.neg tr:nth-child(3) td:nth-child(1) { background-color: #CF4F00; }
+table.tableY.Y2.topics.neg tr:nth-child(4) td:nth-child(1) { background-color: #D56C00; }
+table.tableY.Y2.topics.neg tr:nth-child(5) td:nth-child(1) { background-color: #DC8A00; }
+table.tableY.Y2.topics.neg tr:nth-child(6) td:nth-child(1) { background-color: #E3A700; }
+table.tableY.Y2.topics.neg tr:nth-child(7) td:nth-child(1) { background-color: #E9C400; }
+table.tableY.Y2.topics.neg tr:nth-child(8) td:nth-child(1) { background-color: #F0E100; }
+table.tableY.Y2.topics.neg tr:nth-child(9) td:nth-child(1) { background-color: #F7FF00; }
+/*
 table.tableY.topics tr:nth-child(even) td:nth-child(3) label { background-color: #008000; }
 table.tableY.topics tr:nth-child(odd) td:nth-child(3) label { background-color: #FF0000; }
+*/
 
-#chart {
+.chart {
     margin: 50px auto;
 }
 

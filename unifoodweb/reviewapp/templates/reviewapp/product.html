@@ -2,45 +2,97 @@
 
 {% block content %}
 
-<table class="tableY">
-    <tr><td>ID</td><td>{{ product.id }}</td></tr>
-    <tr><td>Nº reviews</td><td>{{ product.num_rating }}</td></tr>
-    <tr><td>Average score</td><td>{{ product.av_score }}</td></tr>
-    <tr><td>Variance score</td><td>{{ product.var_score }}</td></tr>
-    <tr><td>Words</td>
-        <td>
-            {% for word in product.word_list %}
-            <label class="gray">{{ word }}</label>
-            {% endfor %}
-        </td>
-    </tr>
-</table>
+<div class="block">
+    <table class="tableY">
+        <tr><td>ID</td><td>{{ product.id }}</td></tr>
+        <tr><td>Nº reviews</td><td>{{ product.num_rating }}</td></tr>
+        <tr><td>Average score</td><td>{{ product.av_score }}</td></tr>
+        <tr><td>Variance score</td><td>{{ product.var_score }}</td></tr>
+        <tr><td>Words</td>
+            <td>
+                {% for word in product.word_list %}
+                <label class="gray">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+</div>
 
-{% if product_topic_distribution %}
+{% if chart_data %}
 
-<div id="chart"></div>
+<div class="table-chart block">
 
-<!--<table class="tableY">-->
-    <!--{% for topic in topic_ids %}-->
-    <!--<tr>-->
-        <!--<td>{{ topic.0 }}</td>-->
-        <!--<td>{{ topic.1 }}</td>-->
-        <!--<td>{{ topic.2 }}</td>-->
-    <!--</tr>-->
-    <!--{% endfor %}-->
-<!--</table>-->
+    <p class="title">Topics</p>
+
+    <div id="chart" class="chart"></div>
+
+    <button id="toggle">Toggle tables</button>
+
+    <table id="tablePos" class="tableY Y2 topics pos">
+        {% for topic in topic_pos %}
+        <tr>
+            <td class="checkbox"></td>
+            <td>{{ topic.0.0 }}</td>
+            <td><label class="green">{{ topic.0.1 }}</label></td>
+            <td>
+                {% for word in topic.0.2 %}
+                <label class="gray">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table id="tableNeg" class="tableY Y2 topics neg">
+        {% for topic in topic_neg %}
+        <tr>
+            <td class="checkbox"></td>
+            <td>{{ topic.0.0 }}</td>
+            <td><label class="red">{{ topic.0.1 }}</label></td>
+            <td>
+                {% for word in topic.0.2 %}
+                <label class="gray">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
 
 {% endif %}
 
-
 <script>
+
+    var pattern = [];
+    var patternPos = ['#38EF7D', '#23C546', '#0F9B0F', '#0B7B29', '#085B44', '#064B51', '#053B5E', '#032B6B', '#021B79'];
+    var patternNeg = ['#C21500', '#C83200', '#CF4F00', '#D56C00', '#DC8A00', '#E3A700', '#E9C400', '#F0E100', '#F7FF00'] ;
+
+    for (i = 1; i < {{ topic_pos|safe }}.length + 1; i++) {
+        pattern.push(patternPos[i % patternPos.length]);
+    }
+    for (i = 1; i < {{ topic_neg|safe }}.length + 1; i++) {
+        pattern.push(patternNeg[i % patternNeg.length]);
+    }
+
     var chart = c3.generate({
         data: {
-            columns: {{ product_topic_distribution|safe }},
+            columns: {{ chart_data|safe }},
             type: 'donut'
+        },
+        color: {
+            pattern: pattern
         }
     });
-</script>
 
+
+    $(document).ready(function(){
+        $("#toggle").click(function(){
+            $("#tablePos").toggle();
+            $("#tableNeg").toggle();
+
+        });
+    });
+</script>
 
 {% endblock %}

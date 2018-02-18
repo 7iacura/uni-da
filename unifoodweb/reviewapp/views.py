@@ -115,6 +115,7 @@ def dataset(request):
 			context = { }
 		return render(request, 'reviewapp/dataset.html', context)
 
+
 def dataset_remove(request):
 
 		if Util.objects.filter(type='dataset').exists():
@@ -230,8 +231,7 @@ def users(request):
 
 
 def user(request, user_id):
-	# getUserDistribution
-	user_topic_distribution = getUserDistribution(user_id)
+
 	user = get_object_or_404(User, pk=user_id)
 
 	pos_words = user.pos_words
@@ -250,16 +250,35 @@ def user(request, user_id):
 
 	user.products = execute_select('SELECT DISTINCT(productid) FROM rating WHERE userid = "' + user_id + '"')
 
-	for top in user_topic_distribution[0]:
-		topic_words = []
-		for word in top[2].split(","):
-			topic_words.append(word)
-		top[2] = topic_words
+	# getUserDistribution
+	user_topic_distribution = getUserDistribution(user_id)
+	user_topic_distribution_pos = user_topic_distribution[0]
+	user_topic_distribution_neg = user_topic_distribution[1]
+
+	topic_pos_chart = []
+	for tpc in user_topic_distribution_pos:
+		topic_pos_chart.append(tpc[1])
+
+	topic_neg_chart = []
+	for tpc in user_topic_distribution_neg:
+		topic_neg_chart.append(tpc[1])
+
+	# for top in user_topic_distribution[0]:
+	# 	topic_words = []
+	# 	for word in top[2].split(","):
+	# 		topic_words.append(word)
+	# 	top[2] = topic_words
+
+	print('\n\n\n', topic_pos_chart, '\n\n\n')
 
 	context = {
 		'user': user,
-		'user_topic_distribution': user_topic_distribution[1],
-		'topic_ids': user_topic_distribution[0]
+		# 'user_topic_distribution': user_topic_distribution[1],
+		# 'topic_ids': user_topic_distribution[0]
+		'topic_pos': user_topic_distribution_pos,
+		'topic_pos_chart': topic_pos_chart,
+		'topic_neg': user_topic_distribution_neg,
+		'topic_neg_chart': topic_neg_chart,
 	}
 	return render(request, 'reviewapp/user.html', context)
 
@@ -272,6 +291,9 @@ def products(request):
 def product(request, product_id):
 	# getProductDistribution
 	product_topic_distribution = getProductDistribution(product_id)
+	product_topic_distribution_pos = product_topic_distribution[0]
+	product_topic_distribution_neg = product_topic_distribution[1]
+	product_topic_distribution_chart = product_topic_distribution[2]
 
 	product = get_object_or_404(Product, pk=product_id)
 
@@ -283,7 +305,9 @@ def product(request, product_id):
 
 	context = {
 		'product': product,
-		'product_topic_distribution': product_topic_distribution,
+		'chart_data': product_topic_distribution_chart,
+		'topic_pos': product_topic_distribution_pos,
+		'topic_neg': product_topic_distribution_neg,
 	}
 	return render(request, 'reviewapp/product.html', context)
 

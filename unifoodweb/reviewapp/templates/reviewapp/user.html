@@ -2,69 +2,127 @@
 
 {% block content %}
 
-<table class="tableY">
-    <tr><td>ID</td><td>{{ user.id }}</td></tr>
-    <tr><td>Nº reviews</td><td>{{ user.num_rating }}</td></tr>
-    <tr><td>Products</td><td>
-        {% for product in user.products %}
-        <a href="{% url 'product' product.0 %}"><label class="gray pointer">{{ product.0 }}</label></a>
+<div class="block">
+    <table class="tableY">
+        <tr><td>ID</td><td>{{ user.id }}</td></tr>
+        <tr><td>Nº reviews</td><td>{{ user.num_rating }}</td></tr>
+        <tr><td>Products</td><td>
+            {% for product in user.products %}
+            <a href="{% url 'product' product.0 %}"><label class="gray pointer">{{ product.0 }}</label></a>
+            {% endfor %}
+        </td></tr>
+        <tr><td>Average score</td><td>{{ user.av_score }}</td></tr>
+        <tr><td>Variance score</td><td>{{ user.var_score }}</td></tr>
+        <tr><td>Positive words</td>
+            <td>
+                {% for word in user.pos_words %}
+                <label class="green">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr><td>Negative words</td>
+            <td>
+                {% for word in user.neg_words %}
+                <label class="red">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% if topic_pos %}
+
+<div class="table-chart block">
+
+    <p class="title">Positive topics</p>
+
+    <div id="chartPos" class="chart"></div>
+
+    <button id="togglePos">Toggle table</button>
+
+    <table id="tablePos" class="tableY Y2 topics pos">
+        {% for topic in topic_pos %}
+        <tr>
+            <td class="checkbox"></td>
+            <td>{{ topic.0.0 }}</td>
+            <td><label class="green">{{ topic.0.1 }}</label></td>
+            <td>
+                {% for word in topic.0.2 %}
+                <label class="gray">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
         {% endfor %}
-    </td></tr>
-    <tr><td>Average score</td><td>{{ user.av_score }}</td></tr>
-    <tr><td>Variance score</td><td>{{ user.var_score }}</td></tr>
-    <tr><td>Positive words</td>
-        <td>
-            {% for word in user.pos_words %}
-            <label class="green">{{ word }}</label>
-            {% endfor %}
-        </td>
-    </tr>
-    <tr><td>Negative words</td>
-        <td>
-            {% for word in user.neg_words %}
-            <label class="red">{{ word }}</label>
-            {% endfor %}
-        </td>
-    </tr>
-</table>
+    </table>
 
-{% if user_topic_distribution %}
-
-<div id="chart"></div>
-
-<table class="tableY Y2 topics">
-    {% for topic in topic_ids %}
-    <tr>
-        <td class="checkbox"></td>
-        <td>{{ topic.0 }}</td>
-        <td><label>{{ topic.1 }}</label></td>
-        <td>
-            {% for word in topic.2 %}
-            <label class="gray">{{ word }}</label>
-            {% endfor %}
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+</div>
 
 {% endif %}
 
 
+{% if topic_neg %}
+
+<div class="table-chart block">
+
+    <p class="title">Negative topics</p>
+
+    <div id="chartNeg" class="chart"></div>
+
+    <button id="toggleNeg">Toggle table</button>
+
+    <table id="tableNeg" class="tableY Y2 topics neg">
+        {% for topic in topic_neg %}
+        <tr>
+            <td class="checkbox"></td>
+            <td>{{ topic.0.0 }}</td>
+            <td><label class="red">{{ topic.0.1 }}</label></td>
+            <td>
+                {% for word in topic.0.2 %}
+                <label class="gray">{{ word }}</label>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endif %}
+
 <script>
-    var chart = c3.generate({
+    var chartPos = c3.generate({
+        bindto: '#chartPos',
         data: {
-            columns: {{ user_topic_distribution|safe }},
+            columns: {{ topic_pos_chart|safe }},
             type: 'spline'
         },
         color: {
-            pattern: ['#FF0000', '#008000', '#870808', '#1A3A1A', '#EF7B07', '#5EF25E', '#C64013', '#BFEF2D', '#EFBF2D', '#2FD4E0']
+            pattern: ['#38EF7D', '#23C546', '#0F9B0F', '#0B7B29', '#085B44', '#064B51', '#053B5E', '#032B6B', '#021B79']
         }
     });
-    chart.ygrids.add(
-      {value: 0, text: 'Label 0'}
-    );
 
+    $(document).ready(function(){
+        $("#togglePos").click(function(){
+            $("#tablePos").toggle();
+        });
+    });
 
+    var chartNeg = c3.generate({
+        bindto: '#chartNeg',
+        data: {
+            columns: {{ topic_neg_chart|safe }},
+            type: 'spline'
+        },
+        color: {
+            pattern: ['#C21500', '#C83200', '#CF4F00', '#D56C00', '#DC8A00', '#E3A700', '#E9C400', '#F0E100', '#F7FF00']
+        }
+    });
+
+    $(document).ready(function(){
+        $("#toggleNeg").click(function(){
+            $("#tableNeg").toggle();
+        });
+    });
 </script>
 
 {% endblock %}

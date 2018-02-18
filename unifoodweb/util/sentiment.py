@@ -92,26 +92,31 @@ def getUserDistribution(userId):
     userRates = execute_select('select productid from rating where userid = "'+userId+'" order by timestamp')
     pos_neg_words = execute_select('select pos_words,neg_words  from user where id = "'+userId+'"')[0]
     if pos_neg_words[0] == None:
-      ldaUser(userId)
-      pos_neg_words = execute_select('select pos_words,neg_words from user where id = "'+userId+'"')[0]
+        ldaUser(userId)
+        pos_neg_words = execute_select('select pos_words,neg_words from user where id = "'+userId+'"')[0]
     user_words = (str(pos_neg_words[0])+','+str(pos_neg_words[1])).split(',')
     topics = execute_select('SELECT id, sentiment, words from topic order by id')
 
-    topic_ids = []
-    chart_data = []
+    topic_pos = []
+    topic_neg = []
     for t in topics:
-        topic = ['Topic_'+str(t[0])]
+        chart_data = ['Topic_'+str(t[0])]
         distrib = getRateDistribution(userRates, user_words, t[2])
-        if t[1] == 0:
-            distrib = [-x for x in distrib]
-        topic.extend(distrib)
-        chart_data.append(topic)
+        chart_data.extend(distrib)
+        words = []
+        for w in str(t[2]).split(','):
+            words.append(w)
+        if t[1] == 1:
+            sent = 'Positive'
+            topic_pos.append([['Topic_'+str(t[0]), sent, words], chart_data])
+        else:
+            sent = 'Negative'
+            topic_neg.append([['Topic_'+str(t[0]), sent, words], chart_data])
+    for t in topic_pos:
+        print(t)
+    # print(topic_pos, topic_neg)
+    return [topic_pos, topic_neg]
 
-        sent = 'Positive' if t[1] == 1 else 'Negative'
-        topic_ids.append(['Topic_'+str(t[0]), sent, str(t[2])])
-
-    # pprint(chart_data)
-    return [topic_ids, chart_data]
 
 
 def getProductDistribution(productId):
@@ -119,9 +124,25 @@ def getProductDistribution(productId):
     if words == None:
         ldaProduct(productId)
         words = execute_select('select words from product where id = "'+productId+'"')[0][0]
-    topics = execute_select('SELECT id,words from topic order by id')
-    ret = []
+    topics = execute_select('SELECT id, sentiment, words from topic order by id')
+
+    topic_pos = []
+    topic_neg = []
+    chart_data = []
     for t in topics:
-        ret.append(['Topic_'+str(t[0]), len((intersect(t[1], words[0])))])
-    # pprint(ret)
-    return ret
+        tpc_chart_data = ['Topic_'+str(t[0]), len((intersect(t[2], words[0])))]
+        words = []
+        for w in str(t[2]).split(','):
+            words.append(w)
+        if t[1] == 1:
+            sent = 'Positive'
+            topic_pos.append([['Topic_'+str(t[0]), sent, words], tpc_chart_data])
+        else:
+            sent = 'Negative'
+            topic_neg.append([['Topic_'+str(t[0]), sent, words], tpc_chart_data])
+    for t in topic_pos:
+        chart_data.append(t[1])
+    for t in topic_neg:
+        chart_data.append(t[1])
+    # print(topic_pos, topic_neg, chart_data)
+    return [topic_pos, topic_neg, chart_data]
