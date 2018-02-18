@@ -76,6 +76,7 @@ def calculate_user_experience():
 def getRateDistribution(userRate,user_words,topic_words):
     topic_words = topic_words.split(',')
     distribution = []
+    display = False
     for rate in userRate:
         product_words = (execute_select('select words from product where id = "' + rate[0] + '"'))
         pprint(rate[0])
@@ -84,8 +85,12 @@ def getRateDistribution(userRate,user_words,topic_words):
         product_words = (execute_select('select words from product where id = "' + rate[0] + '"')[0][0]).split(',')
         user_product = intersect(user_words,product_words)
         pprint(intersect(user_product,topic_words))
-        distribution.append(len(intersect(user_product,topic_words)))
-    return distribution
+        inters = len(intersect(user_product,topic_words))
+        if inters > 0:
+            display = True
+        distribution.append(inters)
+    print(distribution)
+    return distribution,display
 
 
 def getUserDistribution(userId):
@@ -101,7 +106,9 @@ def getUserDistribution(userId):
     topic_neg = []
     for t in topics:
         chart_data = ['Topic_'+str(t[0])]
-        distrib = getRateDistribution(userRates, user_words, t[2])
+        distrib,display = getRateDistribution(userRates, user_words, t[2])
+        if not display:
+            continue
         chart_data.extend(distrib)
         words = []
         for w in str(t[2]).split(','):
@@ -114,7 +121,7 @@ def getUserDistribution(userId):
             topic_neg.append([['Topic_'+str(t[0]), sent, words], chart_data])
     for t in topic_pos:
         print(t)
-    # print(topic_pos, topic_neg)
+    #print(topic_pos, topic_neg)
     return [topic_pos, topic_neg]
 
 
@@ -131,6 +138,8 @@ def getProductDistribution(productId):
     chart_data = []
     for t in topics:
         tpc_chart_data = ['Topic_'+str(t[0]), len((intersect(t[2], words[0])))]
+        if tpc_chart_data[1] < 0:
+            continue
         words = []
         for w in str(t[2]).split(','):
             words.append(w)
