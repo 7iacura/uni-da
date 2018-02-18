@@ -229,6 +229,19 @@ def users(request):
 
 def user(request, user_id):
 
+	# getUserDistribution
+	user_topic_distribution = getUserDistribution(user_id)
+	user_topic_distribution_pos = user_topic_distribution[0]
+	user_topic_distribution_neg = user_topic_distribution[1]
+
+	topic_pos_chart = []
+	for tpc in user_topic_distribution_pos:
+		topic_pos_chart.append(tpc[1])
+
+	topic_neg_chart = []
+	for tpc in user_topic_distribution_neg:
+		topic_neg_chart.append(tpc[1])
+
 	user = get_object_or_404(User, pk=user_id)
 
 	pos_words = user.pos_words
@@ -247,18 +260,16 @@ def user(request, user_id):
 
 	user.products = execute_select('SELECT DISTINCT(productid) FROM rating WHERE userid = "' + user_id + '"')
 
-	# getUserDistribution
-	user_topic_distribution = getUserDistribution(user_id)
-	user_topic_distribution_pos = user_topic_distribution[0]
-	user_topic_distribution_neg = user_topic_distribution[1]
-
-	topic_pos_chart = []
-	for tpc in user_topic_distribution_pos:
-		topic_pos_chart.append(tpc[1])
-
-	topic_neg_chart = []
-	for tpc in user_topic_distribution_neg:
-		topic_neg_chart.append(tpc[1])
+	user_products = ''
+	for p in user.products:
+		user_products += "'" + str(p[0]) + "',"
+	user_products = user_products[:-1]
+	review_pie_data = [[5, 0], [4, 0], [3, 0], [2, 0], [1, 0]]
+	review_pie_data_raw = execute_select('SELECT score FROM rating WHERE userid = "' + user_id + '" AND productid IN (' + str(user_products) + ')')
+	for r in review_pie_data_raw:
+		for v in review_pie_data:
+			if r[0] == v[0]:
+				v[1] += 1
 
 	context = {
 		'user': user,
@@ -266,6 +277,7 @@ def user(request, user_id):
 		'topic_pos_chart': topic_pos_chart,
 		'topic_neg': user_topic_distribution_neg,
 		'topic_neg_chart': topic_neg_chart,
+		'review_pie_data': review_pie_data
 	}
 	return render(request, 'reviewapp/user.html', context)
 

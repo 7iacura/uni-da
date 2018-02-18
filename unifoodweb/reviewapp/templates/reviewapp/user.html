@@ -30,9 +30,21 @@
     </table>
 </div>
 
+{% if review_pie_data %}
+
+<div class="block">
+
+    <p class="title">Review score distribution</p>
+
+    <div id="chartReviews" class="chart"></div>
+
+</div>
+
+{% endif %}
+
 {% if topic_pos %}
 
-<div class="table-chart block">
+<div class="block">
 
     <p class="title">Positive topics</p>
 
@@ -59,10 +71,9 @@
 
 {% endif %}
 
-
 {% if topic_neg %}
 
-<div class="table-chart block">
+<div class="block">
 
     <p class="title">Negative topics</p>
 
@@ -90,6 +101,18 @@
 {% endif %}
 
 <script>
+
+    var chartReviews = c3.generate({
+        bindto: '#chartReviews',
+        data: {
+            columns: {{ review_pie_data|safe }},
+            type: 'pie'
+        },
+        color: {
+            pattern: ['#E65C00', '#EA7A08', '#EF9811', '#F4B61A', '#F9D423']
+        }
+    });
+
     var chartPos = c3.generate({
         bindto: '#chartPos',
         data: {

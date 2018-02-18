@@ -1,11 +1,5 @@
-import nltk.classify.util
-from nltk.classify import NaiveBayesClassifier
-from db_manager import execute_select,execute_statement
-from nltk.corpus import movie_reviews
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from nltk.corpus import wordnet
 from pprint import pprint
+from db_manager import *
 from LDA import *
 from JST import *
 
@@ -112,8 +106,6 @@ def getUserDistribution(userId):
         else:
             sent = 'Negative'
             topic_neg.append([['Topic_'+str(t[0]), sent, words], chart_data])
-    for t in topic_pos:
-        print(t)
     # print(topic_pos, topic_neg)
     return [topic_pos, topic_neg]
 
