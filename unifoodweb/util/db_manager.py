@@ -155,7 +155,7 @@ def import_dataset(filename):
         user_data.append(user[3].split(','))
         # calculate variance
         user_data.append(calculate_variance(user_data))
-        parameters.append((user_data[0], user_data[1], user_data[2], user_data[4], None, None,None,None))
+        parameters.append((user_data[0], user_data[1], user_data[2], user_data[4], 0, None, None, None))
         prgbar.step()
     crs.executemany("INSERT INTO user VALUES (?,?,?,?,?,?,?,?)", parameters)
     db.commit()
@@ -225,7 +225,7 @@ def import_json(filename):
         user_data.append(user[3].split(','))
         # calculate variance
         user_data.append(calculate_variance(user_data))
-        parameters.append((user_data[0], user_data[1], user_data[2], user_data[4], None, None, None,None))
+        parameters.append((user_data[0], user_data[1], user_data[2], user_data[4], 0, None, None,None))
         prgbar.step()
     crs.executemany("INSERT INTO user VALUES (?,?,?,?,?,?,?,?)", parameters)
     db.commit()

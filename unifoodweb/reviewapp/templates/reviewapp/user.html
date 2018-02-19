@@ -27,6 +27,11 @@
                 {% endfor %}
             </td>
         </tr>
+        {% if user.experience %}
+        <tr><td>User experience</td>
+            <td>{{ user.experience }} / {{ max_experience.0 }}</td>
+        </tr>
+        {% endif %}
     </table>
 </div>
 

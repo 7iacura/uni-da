@@ -6,21 +6,6 @@
 
     <p class="title">Dataset</p>
 
-    {% if dataset %}
-
-    <p>Dataset from file <b>{{ dataset }}</b></p>
-    <br>
-    <a href="/reviewapp/dataset-remove">
-        <button class="left">Remove dataset</button>
-    </a>
-    <br>
-    <br>
-    <p>Users: <b>{{ users }}</b></p>
-    <p>Products: <b>{{ products }}</b></p>
-    <p>Reviews: <b>{{ reviews }}</b></p>
-
-    {% endif %}
-
     {% if not dataset %}
 
     <p>Import dataset</p>
@@ -36,7 +21,49 @@
 
     {% endif %}
 
+    {% if dataset %}
+
+    <p>Dataset from file <b>{{ dataset }}</b></p>
+    <br>
+    <a href="/reviewapp/dataset-remove">
+        <button class="left">Remove dataset</button>
+    </a>
+    <br><br><hr>
+    <table class="tableY">
+        <tr><td>Users</td><td><label class="orange">{{ n_users }}</label></td></tr>
+        <tr><td>Products</td><td><label class="blue">{{ n_products }}</label></td></tr>
+        <tr><td>Reviews</td><td><label class="purple">{{ n_reviews }}</label></td></tr>
+    </table>
+
+    <div class="chart" id="chartRatings"></div>
+
+    {% endif %}
+
 </div>
+
+<script>
+    var chartRatings = c3.generate({
+        bindto: '#chartRatings',
+        data: {
+            columns: {{ dist_rating|safe }},
+            type: 'bar',
+            colors: {
+                Users: '#FF9900',
+                Products: '#232f3e',
+                Reviews: '#9964ef'
+            },
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: ['Score 5.0', 'Score 4.0', 'Score 3.0', 'Score 2.0', 'Score 1.0']
+            }
+        },
+        bar: {
+            width: { ratio: 0.8 }
+        }
+    });
+</script>
 
 {% endblock %}
 

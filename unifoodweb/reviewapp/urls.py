@@ -6,13 +6,8 @@ urlpatterns = [
 	# /reviewapp/
 	path('', views.index, name='index'),
 
-	# /loading/
-	path('loading/', views.loading, name='loading'),
-
 	# /dataset/
 	path('dataset/', views.dataset, name='dataset'),
-	# # /dataset-loading/
-	# path('dataset-loading/', views.dataset_loading, name='dataset_loading'),
 	# /dataset-remove/
 	path('dataset-remove/', views.dataset_remove, name='dataset_remove'),
 
@@ -20,6 +15,8 @@ urlpatterns = [
 	path('users/', views.users, name='users'),
 	# /user/X/
 	path('user/<str:user_id>', views.user, name='user'),
+	# /user_experience/
+	path('user-experience/<str:user_id>', views.user_experience, name='user-experience'),
 
 	# /products/
 	path('products/', views.products, name='products'),

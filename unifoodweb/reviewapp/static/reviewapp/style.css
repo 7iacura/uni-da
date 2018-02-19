@@ -457,6 +457,9 @@ button:hover, .button:hover,
 button.left {
     float: left;
 }
+button.right {
+    float: right;
+}
 
 .input-file {
 	width: 0.1px;
@@ -577,6 +580,9 @@ label.red {
 }
 label.blue {
     background-color: #232f3e;
+}
+label.purple {
+    background-color: #9964ef;
 }
 
 input.r80 {

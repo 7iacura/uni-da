@@ -21,6 +21,7 @@ def index(request):
 
 	if first_run:
 		print('--> first_run <--')
+
 		request.session.flush()
 		initialize_util()
 		initialize_dataset()
@@ -46,16 +47,6 @@ def index(request):
 	return render(request, 'reviewapp/index.html', context)
 
 
-def loading(request):
-	context = { }
-	return render(request, 'reviewapp/_loading.html', context)
-
-
-def loading_dataset(request):
-	context = { }
-	return render(request, 'reviewapp/_loading.html', context)
-
-
 def dataset(request):
 
 	# import dataset
@@ -78,39 +69,47 @@ def dataset(request):
 		dt = Util(type='dataset', name=file.name)
 		dt.save()
 
+	if Util.objects.filter(type='dataset').exists():
+		# get dataset info
+		dt = Util.objects.get(type="dataset")
 		# get number of users, products, reviews
 		n_users = User.objects.count()
 		n_products = Product.objects.count()
 		n_reviews = Rating.objects.count()
 
+		dist_rating_users_query = execute_select('SELECT COUNT(*) FROM (SELECT score FROM rating GROUP BY userid) rating GROUP BY score ORDER BY score DESC')
+		dist_rating_users = ['Users']
+		for q in dist_rating_users_query:
+			dist_rating_users.append(q[0])
+
+		dist_rating_products_query = execute_select('SELECT COUNT(*) FROM (SELECT score FROM rating GROUP BY productid) rating GROUP BY score ORDER BY score DESC')
+		dist_rating_products = ['Products']
+		for q in dist_rating_products_query:
+			dist_rating_products.append(q[0])
+
+		dist_rating_reviews_query = execute_select('SELECT COUNT(*) FROM rating GROUP BY score ORDER BY score DESC')
+		dist_rating_reviews = ['Reviews']
+		for q in dist_rating_reviews_query:
+			dist_rating_reviews.append(q[0])
+
+		dist_rating = [
+			dist_rating_users,
+			dist_rating_products,
+			dist_rating_reviews
+		]
+
 		context = {
-			'dataset': file.name,
-			'users': n_users,
-			'products': n_products,
-			'reviews': n_reviews,
+			'dataset': dt.name,
+			'n_users': n_users,
+			'n_products': n_products,
+			'n_reviews': n_reviews,
+			'dist_rating': dist_rating,
 		}
 
-		return render(request, 'reviewapp/dataset.html', context)
-
 	else:
-		if Util.objects.filter(type='dataset').exists():
-			# get dataset info
-			dt = Util.objects.get(type="dataset")
-			# get number of users, products, reviews
-			n_users = User.objects.count()
-			n_products = Product.objects.count()
-			n_reviews = Rating.objects.count()
+		context = { }
 
-			context = {
-				'dataset': dt.name,
-				'users': n_users,
-				'products': n_products,
-				'reviews': n_reviews,
-			}
-
-		else:
-			context = { }
-		return render(request, 'reviewapp/dataset.html', context)
+	return render(request, 'reviewapp/dataset.html', context)
 
 
 def dataset_remove(request):
@@ -142,6 +141,15 @@ def dashboard(request):
 			topics = request.session.get('topics', 5)
 			iterations = request.session.get('iterations', 20)
 
+			print('\nUsers: ', len(checked_users))
+			print('Words: ', words)
+			print('Topics: ', topics)
+			print('Iterations: ', iterations, '\n')
+
+			# print('\n==========\n== Calculate user experience ==\n==========\n')
+			# calculate_users_experience(checked_users)
+
+			print('\n==========\n== Build JST Model ==\n==========\n')
 			buildJstModel(checked_users, int(words), int(topics), int(iterations))
 			builted_model = True
 			request.session['builted_model'] = builted_model
@@ -282,6 +290,11 @@ def user(request, user_id):
 			if r[0] == v[0]:
 				v[1] += 1
 
+	checked_users = request.session.get('checked_users', [])
+	checked_users_query = '"' + '","'.join(str(u) for u in checked_users) + '"'
+	if (len(checked_users) > 0):
+		max_experience = execute_select('SELECT MAX(experience) FROM user WHERE id IN (' + checked_users_query + ')')[0]
+
 	context = {
 		'user': user,
 		'topic_pos': user_topic_distribution_pos,
@@ -289,8 +302,18 @@ def user(request, user_id):
 		'topic_neg': user_topic_distribution_neg,
 		'topic_neg_chart': topic_neg_chart,
 		'review_pie_data': review_pie_data,
+		'max_experience': max_experience,
 	}
 	return render(request, 'reviewapp/user.html', context)
+
+
+def user_experience(request, user_id):
+
+	print('\n\ncalculate_user_experience', user_id)
+	# calculate_user_experience(user_id)
+	calculate_users_experience()
+
+	return redirect('/user/'+user_id)
 
 
 def products(request):

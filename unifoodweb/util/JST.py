@@ -160,7 +160,7 @@ class Jst:
         return response
 
 
-    def run(self, reviews, score, maxIters=30):
+    def run(self, reviews, score, maxIters=30, saveAs=None, saveOverride=False):
 
         self._initialize_(reviews)
         numDocs, vocabSize = self.wordOccuranceMatrix.shape

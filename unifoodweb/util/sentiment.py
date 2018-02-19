@@ -1,19 +1,16 @@
-import nltk.classify.util
-from nltk.classify import NaiveBayesClassifier
-from db_manager import execute_select,execute_statement
-from nltk.corpus import movie_reviews
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from nltk.corpus import wordnet
+import sqlite3
 from pprint import pprint
 from LDA import *
 from JST import *
+from db_manager import *
+
 
 def intersect(a, b):
     return list(set(a) & set(b))
 
 
 def readData(users = None):
+
     if users == None:
         doc_set = execute_select('SELECT id,text,score FROM rating')
         reviews = []
@@ -34,8 +31,6 @@ def readData(users = None):
     return reviews, score
 
 
-
-
 def buildJstModel(users = None, words = 10, topics = 5, iterations = 20):
 
     reviews, score = readData(users)
@@ -50,30 +45,41 @@ def buildJstModel(users = None, words = 10, topics = 5, iterations = 20):
             'INSERT INTO topic VALUES (' + str(index) + ',' + str(top[0]) + ',' + str(top[1]) + ',"' + join + '")')
 
 
-def update_experience(users,value):
-
+def update_experience_crs(crs, users, value):
     for user in users.split(','):
-        execute_statement('update user set experience = experience + '+ str(value) + ' where id = "' + user+'"')
+        statement = 'update user set experience = experience + '+str(value) + ' where id = "' + user+'"'
+        # print(statement)
+        crs.execute(statement)
 
 
-def calculate_user_experience():
-    products = execute_select('select id from product')
+def update_experience(users, value):
+    for user in users.split(','):
+        statement = 'update user set experience = experience + '+str(value) + ' where id = "' + user+'"'
+        execute_statement(statement)
+
+
+def calculate_users_experience(user_list):
+    users = '"' + '","'.join(str(u) for u in user_list) + '"'
+    products = execute_select('select DISTINCT(productid) FROM rating WHERE userid IN ('+users+')')
     inc = 0
+    execute_statement('update user set experience = 0')
     for product in products:
-        inc = inc +1
+        print(product)
+        inc = inc + 1
         select = "select group_concat(userid),count(score) as num_score from rating where productid = '"+product[0]+"' group by score order by num_score desc"
         rat = execute_select(select)
         value = 1
         tmp = 0
         rate = 1/len(rat)
         for r in rat:
-            if tmp != 0 and r[1] != tmp:
+            if r[1] != tmp:
                 value = value - rate
                 tmp = r[1]
-                update_experience(r[0],value)
+                update_experience(r[0], value)
 
 
-def getRateDistribution(userRate,user_words,topic_words):
+def getRateDistribution(userRate,user_words, topic_words):
+
     topic_words = topic_words.split(',')
     distribution = []
     display = False
@@ -89,11 +95,13 @@ def getRateDistribution(userRate,user_words,topic_words):
         if inters > 0:
             display = True
         distribution.append(inters)
-    print(distribution)
+
+    # print(distribution)
     return distribution,display
 
 
 def getUserDistribution(userId):
+
     userRates = execute_select('select productid from rating where userid = "'+userId+'" order by timestamp')
     pos_neg_words = execute_select('select pos_words,neg_words  from user where id = "'+userId+'"')[0]
     if pos_neg_words[0] == None:
@@ -106,7 +114,7 @@ def getUserDistribution(userId):
     topic_neg = []
     for t in topics:
         chart_data = ['Topic_'+str(t[0])]
-        distrib,display = getRateDistribution(userRates, user_words, t[2])
+        distrib, display = getRateDistribution(userRates, user_words, t[2])
         if not display:
             continue
         chart_data.extend(distrib)
@@ -119,11 +127,9 @@ def getUserDistribution(userId):
         else:
             sent = 'Negative'
             topic_neg.append([['Topic_'+str(t[0]), sent, words], chart_data])
-    for t in topic_pos:
-        print(t)
-    #print(topic_pos, topic_neg)
+    # for t in topic_pos:
+    #     print(t)
     return [topic_pos, topic_neg]
-
 
 
 def getProductDistribution(productId):
