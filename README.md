@@ -10,7 +10,7 @@ Sentiment analysis on amazon reviews
 
 [1] DATASET
 
-	1.1 Parse dataset from .tsv (or .json) into DB (SQLite)
+1.1 Parse dataset from .tsv (or .json) into DB (SQLite)
 
 [2] TOPIC MODEL
 
@@ -29,7 +29,6 @@ Sentiment analysis on amazon reviews
 	4.1 Use Django to build local webapp and navigate into data
 	4.2 Build page for users, products, reviews and topics
 	4.3 Build charts on 
-	
 		- user rates (pie chart)
 		- user topics (2 line chart, one for pos, one for neg; line = topic, x = review timestamp, y = affinity topic-review)
 		- product rates (pie chart)
