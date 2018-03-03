@@ -1,43 +1,41 @@
-## food
+## uni-da
 
 Exam project: Data Analytics (2016/17) - University of Milan Bicocca
 
 #### Project purposes 
 
-	///
+Sentiment analysis on amazon reviews
 
 #### Project Report
 
 [1] DATASET
 
-	1.1 Parsing dataset from .tsv (or .json) into DB (SQLite)
+	1.1 Parse dataset from .tsv (or .json) into DB (SQLite)
 
 [2] TOPIC MODEL
 
-	2.1 Tokenize reviews: from phrases to relevant tokens
-	2.2 Use Joint sentiment/topic algorithm (based on LDA): get principal topics
+	2.1 Tokenize reviews: from phrases obtain relevant tokens
+	2.2 Use Joint sentiment/topic algorithm (based on LDA) to get principal topics
 	    - how many iterations?
 	    - how many docs (= reviews tokenized)?
-	2.3 Build vector space with docs and topics
-	    (each doc is associated to a vector that rapresent his coordinates in space,
-	    where dimensions are topics)
-	2.4 Use k-means to split docs (in pos/neg ?)
-	2.5 Use reviews rating to better split in pos/neg
 
 [3] USER EXPERIENCE
 
 	3.1 Calculate user experience on each topic
-	3.2 Calcualte "general" user experienxe
+	3.2 Calculate "general" user experienxe
 
 [4] DATA INFO GRAPHIC
 
-	- User:    Distribution of topics (pie chart)
-	- User:    Distribution of topics (line = topic, x = review timestamp, y = affinity topic-review)
-	- User:    Distribution of reviews (pie chart)
-	- [User:    Experience for topics]
-	- [User:    Recommendations (?)]
-	- Product: Distribution of topics (pie chart)
-	- Product: Distribution of reviews (pie chart)
+	4.1 Use Django to build local webapp and navigate into data
+	4.2 Build page for users, products, reviews and topics
+	4.3 Build charts on 
+	
+		- user rates (pie chart)
+		- user topics (2 line chart, one for pos, one for neg; line = topic, x = review timestamp, y = affinity topic-review)
+		- product rates (pie chart)
+		- product topics (pie chart)
+	4.4 #todo: reccomendation based on user preferences and topics
+	
 
 #### Based on article:
 
