@@ -14,26 +14,26 @@ Sentiment analysis on amazon reviews
 
 [2] TOPIC MODEL
 
-	2.1 Tokenize reviews: from phrases obtain relevant tokens
-	2.2 Use Joint sentiment/topic algorithm (based on LDA) to get principal topics
-	    - how many iterations?
-	    - how many docs (= reviews tokenized)?
+2.1 Tokenize reviews: from phrases obtain relevant tokens
+2.2 Use Joint sentiment/topic algorithm (based on LDA) to get principal topics
+    - how many iterations?
+    - how many docs (= reviews tokenized)?
 
 [3] USER EXPERIENCE
 
-	3.1 Calculate user experience on each topic
-	3.2 Calculate "general" user experienxe
+3.1 Calculate user experience on each topic
+3.2 Calculate "general" user experienxe
 
 [4] DATA INFO GRAPHIC
 
-	4.1 Use Django to build local webapp and navigate into data
-	4.2 Build page for users, products, reviews and topics
-	4.3 Build charts on 
-		- user rates (pie chart)
-		- user topics (2 line chart, one for pos, one for neg; line = topic, x = review timestamp, y = affinity topic-review)
-		- product rates (pie chart)
-		- product topics (pie chart)
-	4.4 #todo: reccomendation based on user preferences and topics
+4.1 Use Django to build local webapp and navigate into data
+4.2 Build page for users, products, reviews and topics
+4.3 Build charts on 
+	- user rates (pie chart)
+	- user topics (2 line chart, one for pos, one for neg; line = topic, x = review timestamp, y = affinity topic-review)
+	- product rates (pie chart)
+	- product topics (pie chart)
+4.4 #todo: reccomendation based on user preferences and topics
 	
 
 #### Based on article:
